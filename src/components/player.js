@@ -521,25 +521,27 @@ export default function Player360() {
 
   const tapBackground = () => {
     setDesplegarMenu(prev => !prev);
-    console.log("tapBackground", timeOutClick);
-    if (timeOutClick) return;
-    let banner = document.getElementById("banner");
     let escenasContainer = document.getElementById("escenasContainer");
-    banner.classList.remove("hidden-menu");
-    let to = setTimeout(() => {
-      console.log("intervalo");
-      let banner = document.getElementById("banner");
-      if (
-        banner &&
-        banner.classList &&
-        !banner.classList.contains("hidden-menu")
-      ) {
-        banner.classList.add("hidden-menu");
-        escenasContainer.classList.add("hidden-scenes");
-      }
-      setTimeOutClick(null);
-    }, 1000);
-    setTimeOutClick(to);
+    escenasContainer.classList.add("hidden-scenes");
+    console.log("tapBackground", timeOutClick);
+    // if (timeOutClick) return;
+    // let banner = document.getElementById("banner");
+    // let escenasContainer = document.getElementById("escenasContainer");
+    // banner.classList.remove("hidden-menu");
+    // let to = setTimeout(() => {
+    //   console.log("intervalo");
+    //   let banner = document.getElementById("banner");
+    //   if (
+    //     banner &&
+    //     banner.classList &&
+    //     !banner.classList.contains("hidden-menu")
+    //   ) {
+    //     banner.classList.add("hidden-menu");
+    //     escenasContainer.classList.add("hidden-scenes");
+    //   }
+    //   setTimeOutClick(null);
+    // }, 1000);
+    // setTimeOutClick(to);
   };
 
   const viewScenasShortcut = () => {
