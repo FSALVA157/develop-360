@@ -326,3 +326,17 @@
 .ant-menu-submenu-popup {
   max-width: none !important;
 }
+
+
+
+#menuFlotanteManual {
+  position: absolute;
+  bottom: 50%;
+  left: 10px;
+  transform: translateX(-50%);
+  right: 50%; 
+  z-index: 1000;
+  padding: 0px;
+  transition: transform 0.3s ease-in-out;
+  width: 300px;  
+}

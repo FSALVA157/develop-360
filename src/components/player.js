@@ -21,7 +21,10 @@ import MenuRedes from "./MenuRedes";
 import MenuEscenas from "./MenuEscenas";
 import MenuEnlaces from "./MenuEnlaces";
 import CardCar from "./CardCar";
+import { ModalManual } from "./manual-usuario/ModalManual";
+import MenuManual from "./MenuManual";
 require("aframe-look-at-component");
+
 
 
 export default function Player360() {
@@ -44,6 +47,7 @@ export default function Player360() {
   const [showAlertLink, setShowAlertLink] = useState(false);
   const [showMenuFloat, setShowMenuFloat] = useState(true)
   const [desplegarMenu, setDesplegarMenu] = useState(false);
+  const [showModalManual, setShowModalManual] = useState(false)
   //state que maneja el ocultamiento de la card de menu de otras segun click en pantalla
   const [desplegarCard, setDesplegarCard] = useState(false)
   const menuEnlacesOtrasRef = useRef(null)
@@ -580,6 +584,9 @@ export default function Player360() {
       }
     });
     document.addEventListener("click", handleCardRelacionadas);
+    document.addEventListener("dblclick", () => {
+      setShowModalManual(true)
+    });
     
   }, []);
 
@@ -831,7 +838,7 @@ export default function Player360() {
         )}
         <h1 class="titleExperiencia">{titulo360Value}</h1>
       
-        <div
+        {desplegarMenu &&(<div
             className={`animate__animated ${
               showMenuFloat ? "animate__fadeIn" : "animate__fadeOut"
             }`}
@@ -850,7 +857,8 @@ export default function Player360() {
             isMobile={isMobileXp}
             setVR = {setVR}
           />
-        </div>
+        </div>)}
+
         <MenuOtras
           // id="menuFlotanteOtras"
           handleLinkButton={handleClickLinkButton}
@@ -858,6 +866,7 @@ export default function Player360() {
          />
          <Visitas />         
         <MenuRedes />
+        <MenuManual  showModal={showModalManual} setShowModal={setShowModalManual}  />
         <div ref={menuEnlacesOtrasRef}>
           <MenuEnlaces handleLinkButton={handleNavigateRelated} data={linksDataState} handleShowFromPadre={handleCardRelacionadas} desplegarCard={desplegarCard}/>
         </div>
@@ -869,6 +878,13 @@ export default function Player360() {
         handleClickScenesButton={handleClickScenesButton}
         >          
         </MenuEscenas>
+
+         
+        
+          <ModalManual  showModal={showModalManual} setShowModal={setShowModalManual}  />
+        
+        
+        
          
       
       </>
