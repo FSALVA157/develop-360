@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes as Switch } from 'react-router-d
 import LoginForm from "./components/loginForm";
 import BaseDesigner from "./components/basedesigner";
 import Player360 from "./components/player";
+import { Analiticas } from "./analiticas/componentes/Analiticas";
 
 export default function Routes({ googleAPI, usuarioActivo, setUsuarioActivo }){
   return (
@@ -15,6 +16,7 @@ export default function Routes({ googleAPI, usuarioActivo, setUsuarioActivo }){
           />} 
         />
         <Route path="/player/:proyectId?" element={<Player360/>} />
+        <Route path="/analiticas" element={<Analiticas/>} />
       </Switch>      
     </Router>
   );

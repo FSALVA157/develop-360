@@ -17,6 +17,7 @@ import {
   PlusSquareOutlined,
   SaveOutlined,
   ShareAltOutlined,
+  PieChartOutlined
 } from "@ant-design/icons";
 import {
   Layout,
@@ -97,9 +98,11 @@ const BaseDesigner = ({ usuarioActivo, setUsuarioActivo, googleAPI }) => {
 
   const inputUrlRef = useRef(null);
   const inputTitulo360Ref = useRef(null);
-  const inputTwitterRef = useRef(null);
-  const inputYoutubeRef = useRef(null);
-  const inputFacebookRef = useRef(null);
+  // const inputTwitterRef = useRef(null);
+  // const inputYoutubeRef = useRef(null);
+  // const inputFacebookRef = useRef(null);
+  
+
 
   const agregarElemento = () => {
     console.log("elementos: ", proyecto.escenas.length);
@@ -170,26 +173,26 @@ const BaseDesigner = ({ usuarioActivo, setUsuarioActivo, googleAPI }) => {
     setCambiosGuardando(cambiosGuardando + 1);
   };
 
-  const handleRedesSave = () => {
-    setProyecto((prev) => ({ ...prev, redesSociales: redesState }));
-    setCambiosGuardando(cambiosGuardando + 1);
-  };
+  // const handleRedesSave = () => {
+  //   setProyecto((prev) => ({ ...prev, redesSociales: redesState }));
+  //   setCambiosGuardando(cambiosGuardando + 1);
+  // };
 
   const handleDoubleClicTitulo360Input = () => {
     inputTitulo360Ref.current.select();
   };
 
-  const handleDoubleClicTwitterInput = () => {
-    inputTwitterRef.current.select();
-  };
+  // const handleDoubleClicTwitterInput = () => {
+  //   inputTwitterRef.current.select();
+  // };
 
-  const handleDoubleClicFacebookInput = () => {
-    inputFacebookRef.current.select();
-  };
+  // const handleDoubleClicFacebookInput = () => {
+  //   inputFacebookRef.current.select();
+  // };
 
-  const handleDoubleClicYoutubeInput = () => {
-    inputYoutubeRef.current.select();
-  };
+  // const handleDoubleClicYoutubeInput = () => {
+  //   inputYoutubeRef.current.select();
+  // };
 
   useEffect(() => {
     rotarCamara();
@@ -268,6 +271,11 @@ const BaseDesigner = ({ usuarioActivo, setUsuarioActivo, googleAPI }) => {
           },
         },
       ],
+    },
+    {
+      label: "Analíticas",
+      icon:  PieChartOutlined,      
+      onClick: () => window.open("/analiticas", "_blank"),
     },
     {
       label: "Guardar",
@@ -496,18 +504,18 @@ const BaseDesigner = ({ usuarioActivo, setUsuarioActivo, googleAPI }) => {
     ).then((x) => x.blob().then((y) => myReader.readAsText(y)));
   };
 
-  const handleRename = (values) => {
-    googleAPI
-      .renameFile(proyecto.id, proyecto.nombre)
-      .then((res) => {
-        alert("El archivo ha sido renombrado con Exito!!");
-      })
-      .catch((err) => {
-        alert(
-          "ERRRO: No pudo renombrarse el archivo, por favor, vuelva a loguearse y repita la operación."
-        );
-      });
-  };
+  // const handleRename = (values) => {
+  //   googleAPI
+  //     .renameFile(proyecto.id, proyecto.nombre)
+  //     .then((res) => {
+  //       alert("El archivo ha sido renombrado con Exito!!");
+  //     })
+  //     .catch((err) => {
+  //       alert(
+  //         "ERRRO: No pudo renombrarse el archivo, por favor, vuelva a loguearse y repita la operación."
+  //       );
+  //     });
+  // };
 
   const addElemento = (values) => {
     //  const tmpEscena = escena;
