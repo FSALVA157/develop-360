@@ -1,15 +1,15 @@
 
-import { Card, Divider } from 'antd'
+import { Card } from 'antd'
 import React from 'react'
-import { BarChartRecorridos } from './BarChartRecorridos'
 
-export const RenderGraficosCard = () => {
+
+export const RenderGraficosCard = ({children}) => {
   return (
     <Card
       
     >
       
-        <BarChartRecorridos />
+        {children}
     </Card>
   )
 }

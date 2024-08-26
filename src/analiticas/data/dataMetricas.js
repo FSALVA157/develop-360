@@ -27,6 +27,12 @@ export const metrica_generales = {
     { "mes": "Septiembre", "visitas": 400, "experiencia": "Exp 1" }
   ]
 
+  export const metrica_dispositivos = [
+    { "tipo": "Escritorio", "porcentaje": "74%" },
+    { "tipo": "Mobile", "porcentaje": "52%" },
+    { "tipo": "Tablet", "porcentaje": "36%" }
+  ]
+
   export const metrica_interacciones = [
     { "recorrido": "Recorrido 1", "interacciones": 200, "porcentaje": "74%" },
     { "recorrido": "Recorrido 2", "interacciones": 150, "porcentaje": "52%" },
