@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Collapse, Menu, Popover } from "antd";
-import diagramSvg from "../assets/diagram.svg";
+import bookSvg from "../assets/book.svg";
 
 
 
@@ -15,7 +15,7 @@ const MenuManual = ({ showModal, setShowModal}) => {
       key: "scenes_key",
       icon: (
         <img
-          src={diagramSvg}
+          src={bookSvg}
           alt="escenas"
           style={{ width: 40, height: 40, margin: 0, padding: 0, filter: 'drop-shadow(0px 0px 2px rgba(0, 0, 0, 1))' }}
           className={`animate__animated ${
@@ -51,10 +51,10 @@ const MenuManual = ({ showModal, setShowModal}) => {
         theme="purple"
         style={{           
           height: 50,
-          // width: "100%",
-          margin: 0,
+          width: '20%',
+          //marginLeft: 100,
           padding: 0,
-          display: "block",
+          display: "block",        
           // justifyContent: "flex.end",
           // alignItems: "end",
           // gap: "20px",

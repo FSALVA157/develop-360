@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
 import { CardManual } from './CardManual';
-import { Modal } from 'antd';
+import { Button, Modal } from 'antd';
 import { useState } from 'react';
 import 'animate.css';
 
@@ -26,23 +26,12 @@ export const ModalManual = ({showModal, setShowModal, handleCancel}) => {
           <Modal open={showModal} onOk={handleCloseModal} onCancel={handleCancel} 
            
            styles={{
-            content: {              
-              backgroundColor: 'rgba(0,0,0,0.5)'
-            },
-            bodyStyle: {
-              backgroundColor: 'rgba(0,0,0,0.5)'
-            },
-            headerStyle: {
-              backgroundColor: 'rgba(0,0,0,0.5)'
-            },
-            maskStyle: {
-              backgroundColor: 'rgba(0,0,0,0.5)'
-            },
-            footerStyle: {
-              backgroundColor: 'rgba(0,0,0,0.5)'
-            }
-
-          }}
+            content: {
+              backgroundColor: 'rgba(0,0,0,0.5)'} 
+            }}
+            footer={[
+              <Button type="primary" ghost onClick={handleCloseModal}>Cerrar</Button>
+            ]}
             >
               <CardManual/>
             </Modal>
