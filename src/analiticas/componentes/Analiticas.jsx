@@ -9,12 +9,13 @@ export const Analiticas = () => {
 
   return (
     <>
-      <Divider orientation="left">Primera Parte</Divider>
+      <Divider orientation="left">Analiticas</Divider>
       <Row>
         <Col
           style={{ minWidth: "300px", backgroundColor: "#F9F9F9" }}
           flex="1 1 40%"
         >
+          <Divider>Datos de Una Experiencia</Divider>
           <Row>
             <Col
               style={{ minWidth: "10px" }}
@@ -57,9 +58,10 @@ export const Analiticas = () => {
           </Row>
         </Col>
         <Col
-          style={{ backgroundColor: "yellow", minWidth: "300px" }}
+          style={{minWidth: "300px" }}
           flex="1 1 60%"
         >
+          <Divider>Ranking de Mas Visitadas</Divider>
           <RenderGraficosCard />
         </Col>
       </Row>
