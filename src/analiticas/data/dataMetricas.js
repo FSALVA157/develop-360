@@ -16,15 +16,15 @@ export const metrica_generales = {
 
   
   export const metrica_mensuales = [
-    { "mes": "Enero", "visitas": 150 },
-    { "mes": "Febrero", "visitas": 180 },
-    { "mes": "Marzo", "visitas": 200 },
-    { "mes": "Abril", "visitas": 220 },
-    { "mes": "Mayo", "visitas": 240 },
-    { "mes": "Junio", "visitas": 300 },
-    { "mes": "Julio", "visitas": 350 },
-    { "mes": "Agosto", "visitas": 380 },
-    { "mes": "Septiembre", "visitas": 400 }
+    { "mes": "Enero", "visitas": 150, "experiencia": "Exp 1" },
+    { "mes": "Febrero", "visitas": 180, "experiencia": "Exp 2" },
+    { "mes": "Marzo", "visitas": 200, "experiencia": "Exp 3" },
+    { "mes": "Abril", "visitas": 220, "experiencia": "Exp 1" },
+    { "mes": "Mayo", "visitas": 240, "experiencia": "Exp 2" },
+    { "mes": "Junio", "visitas": 300, "experiencia": "Exp 1" },
+    { "mes": "Julio", "visitas": 350, "experiencia": "Exp 3" },
+    { "mes": "Agosto", "visitas": 380, "experiencia": "Exp 1" },
+    { "mes": "Septiembre", "visitas": 400, "experiencia": "Exp 1" }
   ]
 
   export const metrica_interacciones = [
