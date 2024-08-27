@@ -41,6 +41,65 @@ export const metrica_generales = {
     { "tipo": "Tablet", "value":300 }
   ]
 
+  export const tabla_experiencias = [
+    {
+      id: '1',
+      nombre: 'Recorrido 1',
+      categoria: "Categoría 1",
+      fecha_publicacion: '01/01/2020',
+      producto: 'producto 1',
+      link: 'https://www.google.com',
+      status: "ALTO"      
+    },
+    {
+      id: '2',
+      nombre: 'Recorrido 2',
+      categoria: "Categoría 2",
+      fecha_publicacion: '02/01/2020',
+      producto: 'producto 2',
+      link: 'https://www.apple.com',
+      status: "MEDIO"
+    },
+    {
+      id: '3',
+      nombre: 'Recorrido 3',
+      categoria: "Categoría 3",
+      fecha_publicacion: '03/01/2020',
+      producto: 'producto 3',
+      link: 'https://www.microsoft.com',
+      status: "BAJO"
+    },
+    {
+      id: '4',
+      nombre: 'Recorrido 4',
+      categoria: "Categoría 1",
+      fecha_publicacion: '04/01/2020',
+      producto: 'producto 4',
+      link: 'https://www.amazon.com',
+      status: "ALTO"
+    },
+    {
+      id: '5',
+      nombre: 'Recorrido 5',
+      categoria: "Categoría 2",
+      fecha_publicacion: '05/01/2020',
+      producto: 'producto 5',
+      link: 'https://www.google.com',
+      status: "MEDIO"
+    },
+    {
+      id: '6',
+      nombre: 'Recorrido 6',
+      categoria: "Categoría 3",
+      fecha_publicacion: '06/01/2020',
+      producto: 'producto 6',
+      link: 'https://www.yahoo.com',
+      status: "BAJO"
+    },
+    
+    
+  ];
+
   export const metrica_interacciones = [
     { "recorrido": "Recorrido 1", "interacciones": 200, "porcentaje": "74%" },
     { "recorrido": "Recorrido 2", "interacciones": 150, "porcentaje": "52%" },

@@ -6,6 +6,7 @@ import { RenderGraficosCard } from "./RenderGraficosCard";
 import { BarChartRecorridos } from "./BarChartRecorridos";
 import PieChartDispositivos from "./PieChartDispositivos";
 import PaddingChartPaddingCarrito from "./PieChartPaddingCarrito";
+import { TablaExperiencias } from "./TablaExperiencias";
 
 export const Analiticas = () => {
   const {visitas, agregados_al_carrito, promedio_tiempo_visita, cantidad_compartido, clics_en_relaciones, cantidad_interacciones, metrica_dispositivos} = metrica_generales
@@ -86,23 +87,9 @@ export const Analiticas = () => {
         </Col>
       </Row>
 
-      <Row
       
-      >
-      <Col
-          style={{ minWidth: "300px", backgroundColor: "#F9F9F9" }}
-          flex="1 1 50%"
-        >
-          <Divider>Grafico de Dispositivos</Divider>
-          <RenderGraficosCard children={<PieChartDispositivos />} />
-        </Col>
-        <Col
-          style={{ minWidth: "300px", backgroundColor: "#F9F9F9" }}
-          flex="1 1 50%"
-        >
-          <Divider>Agregados al Carrito</Divider>
-          <RenderGraficosCard children={<PaddingChartPaddingCarrito />} />
-        </Col>
+      <Row >
+        <RenderGraficosCard children={<TablaExperiencias />} />
       </Row>
 
 
