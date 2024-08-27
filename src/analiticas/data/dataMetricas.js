@@ -100,6 +100,12 @@ export const metrica_generales = {
     
   ];
 
+  export const metrica_mas_visitadas = [
+    { "recorrido": "Recorrido 1", "interacciones": 200, "porcentaje": 74 },
+    { "recorrido": "Recorrido 2", "interacciones": 150, "porcentaje": 52 },
+    { "recorrido": "Recorrido 3", "interacciones": 50, "porcentaje": 36 }
+  ]
+
   export const metrica_interacciones = [
     { "recorrido": "Recorrido 1", "interacciones": 200, "porcentaje": "74%" },
     { "recorrido": "Recorrido 2", "interacciones": 150, "porcentaje": "52%" },

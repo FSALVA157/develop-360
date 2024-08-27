@@ -7,6 +7,7 @@ import { BarChartRecorridos } from "./BarChartRecorridos";
 import PieChartDispositivos from "./PieChartDispositivos";
 import PaddingChartPaddingCarrito from "./PieChartPaddingCarrito";
 import { TablaExperiencias } from "./TablaExperiencias";
+import { ProgressMasVisitados } from "./ProgressMasVisitados";
 
 export const Analiticas = () => {
   const {visitas, agregados_al_carrito, promedio_tiempo_visita, cantidad_compartido, clics_en_relaciones, cantidad_interacciones, metrica_dispositivos} = metrica_generales
@@ -17,7 +18,7 @@ export const Analiticas = () => {
       <Row>
         <Col
           style={{ minWidth: "300px", backgroundColor: "#F9F9F9" }}
-          flex="1 1 50%"
+          flex="1 1 50%"          
         >
           <Divider>Datos de Una Experiencia</Divider>
           <Row>
@@ -72,7 +73,8 @@ export const Analiticas = () => {
 
       <Row>
       <Col
-          style={{ minWidth: "300px", backgroundColor: "#F9F9F9" }}
+          style={{ minWidth: "300px", backgroundColor: "#F9F9F9"          
+           }}
           flex="1 1 50%"
         >
           <Divider>Grafico de Dispositivos</Divider>
@@ -89,7 +91,21 @@ export const Analiticas = () => {
 
       
       <Row >
+      <Col
+          style={{ minWidth: "300px", backgroundColor: "#F9F9F9" }}
+          flex="1 1 50%"
+        >
+        <Divider>Experiencias</Divider>
         <RenderGraficosCard children={<TablaExperiencias />} />
+        </Col>
+        <Col
+          style={{ minWidth: "300px", backgroundColor: "#F9F9F9" }}
+          flex="1 1 50%"
+        >
+        <Divider>Recorridos Mas Visitadas</Divider>
+        <RenderGraficosCard children={<ProgressMasVisitados />} />
+        </Col>
+
       </Row>
 
 
