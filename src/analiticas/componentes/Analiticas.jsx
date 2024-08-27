@@ -5,17 +5,18 @@ import { metrica_generales } from "../data/dataMetricas";
 import { RenderGraficosCard } from "./RenderGraficosCard";
 import { BarChartRecorridos } from "./BarChartRecorridos";
 import PieChartDispositivos from "./PieChartDispositivos";
+import PaddingChartPaddingCarrito from "./PieChartPaddingCarrito";
 
 export const Analiticas = () => {
-  const {visitas, agregados_al_carrito, promedio_tiempo_visita, cantidad_compartido, clics_en_relaciones, metrica_dispositivos} = metrica_generales
+  const {visitas, agregados_al_carrito, promedio_tiempo_visita, cantidad_compartido, clics_en_relaciones, cantidad_interacciones, metrica_dispositivos} = metrica_generales
 
   return (
-    <>
+    <div style={{ margin: "10px 50px " }}>
       <Divider orientation="left">Analiticas</Divider>
       <Row>
         <Col
           style={{ minWidth: "300px", backgroundColor: "#F9F9F9" }}
-          flex="1 1 40%"
+          flex="1 1 50%"
         >
           <Divider>Datos de Una Experiencia</Divider>
           <Row>
@@ -43,25 +44,25 @@ export const Analiticas = () => {
               style={{  minWidth: "10px" }}
               flex="1 1 33%"
             >
-              <DatoNumericoCard valor="2000" titulo="Visitas" />
+              <DatoNumericoCard valor={cantidad_compartido} titulo="Cantidad Compartido" />
             </Col>
             <Col
               style={{ minWidth: "10px" }}
               flex="1 1 33%"
             >
-              <DatoNumericoCard valor="2000" titulo="Visitas" />
+              <DatoNumericoCard valor={clics_en_relaciones} titulo="Clics en Relaciones" />
             </Col>
             <Col
               style={{ minWidth: "10px" }}
               flex="1 1 33%"
             >
-              <DatoNumericoCard valor="2000" titulo="Visitas" />
+              <DatoNumericoCard valor={cantidad_interacciones} titulo="Cantidad Interacciones" />
             </Col>
           </Row>
         </Col>
         <Col
           style={{minWidth: "300px" }}
-          flex="1 1 60%"
+          flex="1 1 50%"
         >
           <Divider>Ranking de Mas Visitadas</Divider>
           <RenderGraficosCard children={<BarChartRecorridos />} />
@@ -81,8 +82,30 @@ export const Analiticas = () => {
           flex="1 1 50%"
         >
           <Divider>Agregados al Carrito</Divider>
+          <RenderGraficosCard children={<PaddingChartPaddingCarrito />} />
         </Col>
       </Row>
-    </>
+
+      <Row
+      
+      >
+      <Col
+          style={{ minWidth: "300px", backgroundColor: "#F9F9F9" }}
+          flex="1 1 50%"
+        >
+          <Divider>Grafico de Dispositivos</Divider>
+          <RenderGraficosCard children={<PieChartDispositivos />} />
+        </Col>
+        <Col
+          style={{ minWidth: "300px", backgroundColor: "#F9F9F9" }}
+          flex="1 1 50%"
+        >
+          <Divider>Agregados al Carrito</Divider>
+          <RenderGraficosCard children={<PaddingChartPaddingCarrito />} />
+        </Col>
+      </Row>
+
+
+    </div>
   );
 };

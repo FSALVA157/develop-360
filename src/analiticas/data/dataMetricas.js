@@ -4,7 +4,8 @@ export const metrica_generales = {
     "agregados_al_carrito": 100,
     "promedio_tiempo_visita": "2m 34s",
     "cantidad_compartido": 1000,
-    "clics_en_relaciones": 60
+    "clics_en_relaciones": 60,
+    "cantidad_interacciones": 2000
   }
   
 
@@ -28,9 +29,9 @@ export const metrica_generales = {
   ]
 
   export const metrica_dispositivos = [
-    { "tipo": "Escritorio", "porcentaje": "74%" },
-    { "tipo": "Mobile", "porcentaje": "52%" },
-    { "tipo": "Tablet", "porcentaje": "36%" }
+    { "tipo": "Escritorio", "value": 800 },
+    { "tipo": "Mobile", "value": 300 },
+    { "tipo": "Tablet", "value":300 }
   ]
 
   export const metrica_interacciones = [
