@@ -15,6 +15,13 @@ export const metrica_generales = {
     { "recorrido": "Recorrido 3", "visitas": 200 }
   ]
 
+  export const metrica_carrito = [
+    { "recorrido": "Recorrido 1", "value": 150 },
+    { "recorrido": "Recorrido 2", "value": 300 },
+    { "recorrido": "Recorrido 3", "value": 600 },
+    { "recorrido": "Recorrido 4", "value": 50 }
+  ]
+
   
   export const metrica_mensuales = [
     { "mes": "Enero", "visitas": 150, "experiencia": "Exp 1" },

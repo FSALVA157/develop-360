@@ -31,7 +31,7 @@ export default class PieChartDispositivos extends PureComponent {
   render() {
     return (
       <>
-      <ResponsiveContainer aspect={2}>
+      <ResponsiveContainer aspect={5}>
         <PieChart 
            width='100%' height='100%'
         >
