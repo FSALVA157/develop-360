@@ -107,7 +107,7 @@ export default class PaddingChartPaddingCarrito extends PureComponent {
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              minHeight: 270,
+              
             }}
             flex="1 1 30%"
             
