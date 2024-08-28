@@ -1,4 +1,27 @@
 
+export const lista_experiencias = [{
+  "id": 1,
+  "nombre": "Experiencia 1",
+  "producto": "Camioneta Modelo RX1532",
+  "fecha_creacion": "2022-01-01",
+  "fecha_actualizacion": "2022-01-01"
+},
+{
+  "id": 2,
+  "nombre": "Experiencia 2",
+  "producto": "Automóvil Deportivo modelos RX1532",
+  "fecha_creacion": "2022-01-01",
+  "fecha_actualizacion": "2022-01-01"
+},
+{
+  "id": 3,
+  "nombre": "Experiencia 3",
+  "producto": "Departamento en Puerto Madero",
+  "fecha_creacion": "2022-01-01",
+  "fecha_actualizacion": "2022-01-01"
+}
+];
+
 export const metrica_generales = {
     "visitas": 2000,
     "agregados_al_carrito": 100,
