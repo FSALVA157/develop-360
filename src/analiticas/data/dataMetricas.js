@@ -107,21 +107,21 @@ export const metrica_generales = {
   ]
 
   export const metrica_interacciones = [
-    { "recorrido": "Recorrido 1", "interacciones": 200, "porcentaje": "74%" },
-    { "recorrido": "Recorrido 2", "interacciones": 150, "porcentaje": "52%" },
-    { "recorrido": "Recorrido 3", "interacciones": 50, "porcentaje": "36%" }
+    { "recorrido": "Recorrido 1", "interacciones": 200, "porcentaje": 74 },
+    { "recorrido": "Recorrido 2", "interacciones": 150, "porcentaje": 5 },
+    { "recorrido": "Recorrido 3", "interacciones": 50, "porcentaje": 36 }
   ]
 
   export const metrica_permanencia = [
-    { "recorrido": "Recorrido 1", "tiempo_permanencia": "3m", "porcentaje": "96%" },
-    { "recorrido": "Recorrido 2", "tiempo_permanencia": "2m", "porcentaje": "92%" },
-    { "recorrido": "Recorrido 3", "tiempo_permanencia": "1m 30s", "porcentaje": "90%" }
+    { "recorrido": "Recorrido 1", "tiempo_permanencia": "3m", "porcentaje": 96 },
+    { "recorrido": "Recorrido 2", "tiempo_permanencia": "2m", "porcentaje": 32 },
+    { "recorrido": "Recorrido 3", "tiempo_permanencia": "1m 30s", "porcentaje": 40 }
   ]
 
   export const metrica_rebote = [
-    { "recorrido": "Recorrido 1", "rebote": "4%", "porcentaje": "96%" },
-    { "recorrido": "Recorrido 2", "rebote": "8%", "porcentaje": "92%" },
-    { "recorrido": "Recorrido 3", "rebote": "10%", "porcentaje": "90%" }
+    { "recorrido": "Recorrido 1", "rebote": "4%", "porcentaje": 96 },
+    { "recorrido": "Recorrido 2", "rebote": "8%", "porcentaje": 72 },
+    { "recorrido": "Recorrido 3", "rebote": "10%", "porcentaje": 30 }
   ]
   
   

@@ -8,6 +8,9 @@ import PieChartDispositivos from "./PieChartDispositivos";
 import PaddingChartPaddingCarrito from "./PieChartPaddingCarrito";
 import { TablaExperiencias } from "./TablaExperiencias";
 import { ProgressMasVisitados } from "./ProgressMasVisitados";
+import { ProgressPermanencia } from "./ProgressPermanencia";
+import { ProgressRebote } from "./ProgressRebote";
+import { ProgressInteracciones } from "./ProgressInteracciones";
 
 export const Analiticas = () => {
   const {visitas, agregados_al_carrito, promedio_tiempo_visita, cantidad_compartido, clics_en_relaciones, cantidad_interacciones, metrica_dispositivos} = metrica_generales
@@ -104,6 +107,26 @@ export const Analiticas = () => {
         >
         <Divider>Recorridos Mas Visitadas</Divider>
         <RenderGraficosCard children={<ProgressMasVisitados />} />
+        <Divider>Tiempo de Permanencia Recorridos</Divider>
+        <RenderGraficosCard children={<ProgressPermanencia />} />
+        </Col>
+
+      </Row>
+      <Row >
+      <Col
+          style={{ minWidth: "300px", backgroundColor: "#F9F9F9" }}
+          flex="1 1 50%"
+        >
+        <Divider>Tasa de Rebote</Divider>
+        <RenderGraficosCard children={<ProgressRebote />} />
+        </Col>
+        <Col
+          style={{ minWidth: "300px", backgroundColor: "#F9F9F9" }}
+          flex="1 1 50%"
+        >
+        <Divider>Interacciones con Recorridos</Divider>
+        <RenderGraficosCard children={<ProgressInteracciones />} />
+        
         </Col>
 
       </Row>
