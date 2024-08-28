@@ -22,14 +22,36 @@ export const lista_experiencias = [{
 }
 ];
 
-export const metrica_generales = {
+export const metrica_generales = [
+  {
+    "id_experiencia": 1,
     "visitas": 2000,
     "agregados_al_carrito": 100,
     "promedio_tiempo_visita": "2m 34s",
     "cantidad_compartido": 1000,
     "clics_en_relaciones": 60,
     "cantidad_interacciones": 2000
+  },
+  {
+    "id_experiencia": 2,
+    "visitas": 1789,
+    "agregados_al_carrito": 30,
+    "promedio_tiempo_visita": "1h 30m 34s",
+    "cantidad_compartido": 750,
+    "clics_en_relaciones": 1200,
+    "cantidad_interacciones": 38521
+  },
+  {
+    "id_experiencia": 3,
+    "visitas": 126,
+    "agregados_al_carrito": 70,
+    "promedio_tiempo_visita": "50m 6s",
+    "cantidad_compartido": 687,
+    "clics_en_relaciones": 964,
+    "cantidad_interacciones": 12900
   }
+
+]
   
 
   export const metrica_visitas = [

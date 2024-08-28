@@ -30,11 +30,12 @@ export const Analiticas = () => {
 
   const [experienciasList, setExperienciasList] = useState(lista_experiencias);
   const [idSelectedExp, setIdSelectedExp] = useState(1)
+  const [metricasGenerales, setMetricasGenerales] = useState(metrica_generales.filter((exp) => exp.id_experiencia === idSelectedExp)[0])
 
 
-  const handleChangeExperiencia = (value) => {
-    console.log(">>>>>>>",value)
+  const handleChangeExperiencia = (value) => {    
     setIdSelectedExp(value)
+    setMetricasGenerales(metrica_generales.filter((exp) => exp.id_experiencia === value)[0])
   }
 
   return (
@@ -62,23 +63,23 @@ export const Analiticas = () => {
             style={{ minWidth: "300px", backgroundColor: "#F9F9F9" }}
             flex="1 1 50%"
           >
-            <Divider>Datos de Una Experiencia</Divider>
+            <Divider>Metricas Individuales</Divider>
             <Row>
               <Col style={{ minWidth: "10px" }} flex="1 1 33%">
                 <DatoNumericoCard
-                  valor={visitas}
+                  valor={metricasGenerales.visitas}
                   titulo="Cantidad de Visitas"
                 />
               </Col>
               <Col style={{ minWidth: "10px" }} flex="1 1 33%">
                 <DatoNumericoCard
-                  valor={agregados_al_carrito}
+                  valor={metricasGenerales.agregados_al_carrito}
                   titulo="Agregados al Carrito"
                 />
               </Col>
               <Col style={{ minWidth: "10px" }} flex="1 1 33%">
                 <DatoNumericoCard
-                  valor={promedio_tiempo_visita}
+                  valor={metricasGenerales.promedio_tiempo_visita}
                   titulo="Promedio Tiempo de Visita"
                 />
               </Col>
@@ -86,19 +87,19 @@ export const Analiticas = () => {
             <Row>
               <Col style={{ minWidth: "10px" }} flex="1 1 33%">
                 <DatoNumericoCard
-                  valor={cantidad_compartido}
+                  valor={metricasGenerales.cantidad_compartido}
                   titulo="Cantidad Compartido"
                 />
               </Col>
               <Col style={{ minWidth: "10px" }} flex="1 1 33%">
                 <DatoNumericoCard
-                  valor={clics_en_relaciones}
+                  valor={metricasGenerales.clics_en_relaciones}
                   titulo="Clics en Relaciones"
                 />
               </Col>
               <Col style={{ minWidth: "10px" }} flex="1 1 33%">
                 <DatoNumericoCard
-                  valor={cantidad_interacciones}
+                  valor={metricasGenerales.cantidad_interacciones}
                   titulo="Cantidad Interacciones"
                 />
               </Col>
