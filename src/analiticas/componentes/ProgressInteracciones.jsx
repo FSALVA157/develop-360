@@ -22,8 +22,6 @@ export const ProgressInteracciones = () => {
               type="dashboard"
               percent={item.porcentaje}
               steps={8}
-                         
-              
               trailColor="rgba(0, 0, 0, 0.06)"
               strokeWidth={10}
             />
