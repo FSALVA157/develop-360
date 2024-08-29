@@ -1,6 +1,5 @@
 import { Avatar, Card, Col, Divider, Row, Select } from "antd";
 import React, { useState } from "react";
-import { DatoNumericoCard } from "./DatoNumericoCard";
 import { lista_experiencias, metrica_generales } from "../data/dataMetricas";
 import { RenderGraficosCard } from "./RenderGraficosCard";
 import { BarChartRecorridos } from "./BarChartRecorridos";
@@ -13,20 +12,14 @@ import { ProgressRebote } from "./ProgressRebote";
 import { ProgressInteracciones } from "./ProgressInteracciones";
 import Meta from "antd/es/card/Meta";
 import membrete from '../../assets/membrete.png'
+import { MetricasIndividuales } from "./MetricasIndividuales";
 
-const initialStateExperiencias = [];
+
 
 
 
 export const Analiticas = () => {
-  const {
-    visitas,
-    agregados_al_carrito,
-    promedio_tiempo_visita,
-    cantidad_compartido,
-    clics_en_relaciones,
-    cantidad_interacciones    
-  } = metrica_generales;
+  
 
   const [experienciasList, setExperienciasList] = useState(lista_experiencias);
   const [idSelectedExp, setIdSelectedExp] = useState(1)
@@ -64,46 +57,8 @@ export const Analiticas = () => {
             flex="1 1 50%"
           >
             <Divider>Metricas Individuales</Divider>
-            <Row>
-              <Col style={{ minWidth: "10px" }} flex="1 1 33%">
-                <DatoNumericoCard
-                  valor={metricasGenerales.visitas}
-                  titulo="Cantidad de Visitas"
-                />
-              </Col>
-              <Col style={{ minWidth: "10px" }} flex="1 1 33%">
-                <DatoNumericoCard
-                  valor={metricasGenerales.agregados_al_carrito}
-                  titulo="Agregados al Carrito"
-                />
-              </Col>
-              <Col style={{ minWidth: "10px" }} flex="1 1 33%">
-                <DatoNumericoCard
-                  valor={metricasGenerales.promedio_tiempo_visita}
-                  titulo="Promedio Tiempo de Visita"
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col style={{ minWidth: "10px" }} flex="1 1 33%">
-                <DatoNumericoCard
-                  valor={metricasGenerales.cantidad_compartido}
-                  titulo="Cantidad Compartido"
-                />
-              </Col>
-              <Col style={{ minWidth: "10px" }} flex="1 1 33%">
-                <DatoNumericoCard
-                  valor={metricasGenerales.clics_en_relaciones}
-                  titulo="Clics en Relaciones"
-                />
-              </Col>
-              <Col style={{ minWidth: "10px" }} flex="1 1 33%">
-                <DatoNumericoCard
-                  valor={metricasGenerales.cantidad_interacciones}
-                  titulo="Cantidad Interacciones"
-                />
-              </Col>
-            </Row>
+            <RenderGraficosCard children={<MetricasIndividuales metricasGenerales={metricasGenerales} />}/>
+            
           </Col>
           <Col style={{ minWidth: "300px" }} flex="1 1 50%">
             <Divider>Ranking de Mas Visitadas</Divider>
