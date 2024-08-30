@@ -23,11 +23,22 @@ import MenuEnlaces from "./MenuEnlaces";
 import CardCar from "./CardCar";
 import { ModalManual } from "./manual-usuario/ModalManual";
 import MenuManual from "./MenuManual";
+import { withTracking } from 'react-tracker';
+import { pageViewEvent } from "../tracking/events/experienceEvents";
+import PropTypes from 'prop-types';
+import { onPageView } from "../tracking/listeners/experienceEventsListeners";
+
+
+
+
+
 require("aframe-look-at-component");
 
 
 
-export default function Player360() {
+
+
+ function Player360({trackPageView}) {
   const [open, setOpen] = useState(false);
   const [cargando, setCargando] = useState(false);
   const [popUpTitulo, setPopUpTitulo] = useState("");
@@ -97,6 +108,7 @@ export default function Player360() {
 
   useEffect(() => {
     ReactGA.initialize(ANALYTICS_KEY);
+    
   }, []);
   
 
@@ -392,6 +404,8 @@ export default function Player360() {
       setFileData(data);
       console.log("<<<<<<<<<DATOS DEL PROYECTO OBTENIDOS DEL FILE<<<<<<<<<<");
       console.log(data);
+      //llamada el listner de visita de pagina
+      onPageView(data.titulo360);
       setCargando(false);
       setAnimateEnabled(data.isAnimated);
       setUrlLink(data.linkUrl);
@@ -574,7 +588,7 @@ export default function Player360() {
   useEffect(() => {
     console.log("[PLAYER-VIEW]:::EFFECT", !location.proyectId);
     setMouseEvents();
-    getProject();
+    getProject();    
     isMobile();
     ReactGA.event({
       category: 'User', 
@@ -891,3 +905,20 @@ export default function Player360() {
     
   );
 }
+
+Player360.propTypes = {  
+  trackPageView: PropTypes.func
+}
+
+const mapTrackingToProps = trackEvent => {  
+  return {
+    trackPageView: (pageName) =>{      
+       trackEvent(pageViewEvent(pageName))
+      }
+  };
+};
+
+const pageWithTracking = withTracking(mapTrackingToProps)(Player360)
+export default pageWithTracking
+
+//export default withTracking(mapTrackingToProps)(Player360)

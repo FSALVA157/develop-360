@@ -1,0 +1,3 @@
+export const PURCHASE_PRODUCT = 'PURCHASE_PRODUCT';
+export const SHARE_EXPERIENCE = 'SHARE_EXPERIENCE';
+export const PAGE_VIEW = 'PAGE_VIEW';

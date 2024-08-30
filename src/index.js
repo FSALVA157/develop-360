@@ -3,11 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {TrackerProvider, Tracker} from 'react-tracker'
+//import trackingListeners from './tracking/listeners';
+import { pageViewEvent } from './tracking/events/experienceEvents';
+
+const tracker = new Tracker([pageViewEvent]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <TrackerProvider tracker={tracker}>
     <App />
+    </TrackerProvider>
   </React.StrictMode>
 );
 
