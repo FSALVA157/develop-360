@@ -16,19 +16,16 @@ export const purchaseEvent = productId => ({
 });
 
 /**
- * get star product event object!
- * @param {Number} friendId 
+ * Evento de compartir experiencia
  */
-export const shareExperienceEvent = productId => ({
+export const shareExperienceEvent = data => (
+    {
     type: SHARE_EXPERIENCE,
-    data: {
-        productId
-    }
+    data: data    
 });
 
 /**
- * get page view event object!
- * @param {Number} friendId 
+ *Evento de vista de pagina
  */
 export const pageViewEvent = pageName => ({
     type: PAGE_VIEW,

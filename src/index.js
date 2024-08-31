@@ -4,10 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {TrackerProvider, Tracker} from 'react-tracker'
-//import trackingListeners from './tracking/listeners';
-import { pageViewEvent } from './tracking/events/experienceEvents';
+import trackingListeners from './tracking/listeners';
 
-const tracker = new Tracker([pageViewEvent]);
+
+//const tracker = new Tracker([pageViewEvent,shareExperienceEvent]);
+const tracker = new Tracker(trackingListeners);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

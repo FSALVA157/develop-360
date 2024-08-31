@@ -1,8 +1,11 @@
+import { useContext } from 'react';
 import {
     PURCHASE_PRODUCT,
     SHARE_EXPERIENCE,
     PAGE_VIEW,
 } from '../constants'
+
+
 
 /**
  * Listener on purchase event
@@ -20,13 +23,15 @@ export const onPurchase = (event = {}, eventsHistory) => {
 onPurchase.eventType = PURCHASE_PRODUCT;
 
 /**
- * Listener on star product event
+ * Listener on share Experience
  * @param {Object} event 
  * @param {Array} eventsHistory 
  */
-export const onShareExperience = (event, eventsHistory) => {    
-    
-    console.log("Se Ha Compartido La Experiencia %%%%",event)
+export const onShareExperience = (event={}, eventsHistory) => {        
+    console.table({
+        type: "Experiencia compartida",
+        event: event,
+    })
     return event;
 }
 onShareExperience.eventType = SHARE_EXPERIENCE;
@@ -36,10 +41,19 @@ onShareExperience.eventType = SHARE_EXPERIENCE;
  * @param {Object} event 
  * @param {Array} eventsHistory 
  */
-export const onPageView = (event, eventsHistory) => {
+export const onPageView = (addEvent, event, eventsHistory) => {
+    
     // For example let's push the recieved event to our Datalyer!
     //window.dataLayer.push(event)
-    console.log("Pagina Visitada >>>>>>>><<",event)
+    console.table({
+        type: "Pagina Visitada",
+        event: event,
+    })
+
+    addEvent({        
+        data: event,
+        timestamp: Date.now()
+    })
     
     // In order to save this event in the history (so we can log it) we should return it!
     // otherwise it will be ignored!

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import AFRAME from "aframe";
 import { Entity } from "aframe-react";
@@ -20,22 +20,14 @@ import Visitas from "./Visitas";
 import MenuRedes from "./MenuRedes";
 import MenuEscenas from "./MenuEscenas";
 import MenuEnlaces from "./MenuEnlaces";
-import CardCar from "./CardCar";
 import { ModalManual } from "./manual-usuario/ModalManual";
 import MenuManual from "./MenuManual";
 import { withTracking } from 'react-tracker';
 import { pageViewEvent } from "../tracking/events/experienceEvents";
 import PropTypes from 'prop-types';
 import { onPageView } from "../tracking/listeners/experienceEventsListeners";
-
-
-
-
-
+import { AnaliticasContext } from "../context/analiticas-context/AnaliticasContext";
 require("aframe-look-at-component");
-
-
-
 
 
  function Player360({trackPageView}) {
@@ -62,6 +54,9 @@ require("aframe-look-at-component");
   //state que maneja el ocultamiento de la card de menu de otras segun click en pantalla
   const [desplegarCard, setDesplegarCard] = useState(false)
   const menuEnlacesOtrasRef = useRef(null)
+
+  //manejo de Context de Analiticas
+  const {analiticasState, addEventHandler} = useContext(AnaliticasContext)
 
 
   const [titulo360Value, setTitulo360Value] = useState("");
@@ -405,7 +400,7 @@ require("aframe-look-at-component");
       console.log("<<<<<<<<<DATOS DEL PROYECTO OBTENIDOS DEL FILE<<<<<<<<<<");
       console.log(data);
       //llamada el listner de visita de pagina
-      onPageView(data.titulo360);
+      onPageView(addEventHandler, data.nombre);      
       setCargando(false);
       setAnimateEnabled(data.isAnimated);
       setUrlLink(data.linkUrl);
@@ -586,9 +581,10 @@ require("aframe-look-at-component");
   };
 
   useEffect(() => {
-    console.log("[PLAYER-VIEW]:::EFFECT", !location.proyectId);
+    console.log("[PLAYER-VIEW]:::EFFECT", !location.proyectId);    
     setMouseEvents();
     getProject();    
+    console.log("Estado de analiticas Context", analiticasState)
     isMobile();
     ReactGA.event({
       category: 'User', 
@@ -879,7 +875,7 @@ require("aframe-look-at-component");
           // handleOptionButton={handleClickOptionButton}
          />
          <Visitas />         
-        <MenuRedes />
+        <MenuRedes data={proyecto} />
         <MenuManual  showModal={showModalManual} setShowModal={setShowModalManual}  />
         <div ref={menuEnlacesOtrasRef}>
           <MenuEnlaces handleLinkButton={handleNavigateRelated} data={linksDataState} handleShowFromPadre={handleCardRelacionadas} desplegarCard={desplegarCard}/>
@@ -918,7 +914,7 @@ const mapTrackingToProps = trackEvent => {
   };
 };
 
-const pageWithTracking = withTracking(mapTrackingToProps)(Player360)
-export default pageWithTracking
+const playerWithTracking = withTracking(mapTrackingToProps)(Player360)
+export default playerWithTracking
 
 //export default withTracking(mapTrackingToProps)(Player360)
