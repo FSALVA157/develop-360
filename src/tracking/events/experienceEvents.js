@@ -2,6 +2,7 @@ import {
     PURCHASE_PRODUCT,
     SHARE_EXPERIENCE,
     PAGE_VIEW,
+    VIEW_SCENE
 } from '../constants'
 
 /**
@@ -27,9 +28,18 @@ export const shareExperienceEvent = data => (
 /**
  *Evento de vista de pagina
  */
-export const pageViewEvent = pageName => ({
+export const pageViewEvent = data => ({
     type: PAGE_VIEW,
     data: {
-        pageName: pageName,        
+        data: data,        
     }
 })
+
+/**
+ * Evento de compartir experiencia
+ */
+export const visitScene = data => (
+    {
+    type: VIEW_SCENE,
+    data: data    
+});

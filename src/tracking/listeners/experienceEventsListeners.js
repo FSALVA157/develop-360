@@ -3,6 +3,7 @@ import {
     PURCHASE_PRODUCT,
     SHARE_EXPERIENCE,
     PAGE_VIEW,
+    VIEW_SCENE
 } from '../constants'
 
 
@@ -21,6 +22,21 @@ export const onPurchase = (event = {}, eventsHistory) => {
     return event;
 }
 onPurchase.eventType = PURCHASE_PRODUCT;
+
+export const onViewScene = (addEventHandler, event={}, eventsHistory) => {        
+    console.table({
+        type: "Scene Vista",
+        event: event.name_scene,
+    })
+
+    addEventHandler({                
+        type: "Scene Vista",
+        name_scene: event.name_scene
+    })
+    return event;
+}
+onViewScene.eventType = VIEW_SCENE;
+
 
 /**
  * Listener on share Experience
@@ -41,18 +57,18 @@ onShareExperience.eventType = SHARE_EXPERIENCE;
  * @param {Object} event 
  * @param {Array} eventsHistory 
  */
-export const onPageView = (addEvent, event, eventsHistory) => {
+export const onPageView = (setAnalyticData, event, eventsHistory) => {
     
     // For example let's push the recieved event to our Datalyer!
     //window.dataLayer.push(event)
-    console.table({
+    console.log({
         type: "Pagina Visitada",
         event: event,
     })
 
-    addEvent({        
-        data: event,
-        timestamp: Date.now()
+    setAnalyticData({        
+        id_experience: event.id_experience,
+        name_experience: event.name_experience,
     })
     
     // In order to save this event in the history (so we can log it) we should return it!

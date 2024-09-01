@@ -7,25 +7,29 @@ import { analiticasTypes as types } from './types'
 
 export const AnaliticasProvider = ({ children }) => {
 
- const [analiticasState, dispatch] = useReducer(analiticasReducer, [{
-    id: 1,
-    name: 'event1',
-    timestamp: Date.now()
-  }])
+ const [analiticasState, dispatch] = useReducer(analiticasReducer, {
+    id_experience: 0,
+    name_experience: 'experience name',
+    date: Date.now(),
+    additional:[]
+  })
 
-  const addEventHandler = (event) => {
-    console.log('**********************************************')
-    console.log(analiticasState)
-    console.log(event)
+  const setAnalyticState = (data) => {
+    dispatch({
+      type: types.setAnalyticData,
+      payload: data
+    })
+  }
+
+  const addEventHandler = (event) => {    
     dispatch({
       type: types.addEvent,
       payload: event
-    })
-    console.log("ESTADO POSTERIOR",analiticasState)
+    })    
   }
 
   return (
-    <AnaliticasContext.Provider value={{analiticasState, addEventHandler}}>
+    <AnaliticasContext.Provider value={{analiticasState, setAnalyticState, addEventHandler}}>
       {children}    
     </AnaliticasContext.Provider>
   )

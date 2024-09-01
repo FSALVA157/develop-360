@@ -25,7 +25,7 @@ import MenuManual from "./MenuManual";
 import { withTracking } from 'react-tracker';
 import { pageViewEvent } from "../tracking/events/experienceEvents";
 import PropTypes from 'prop-types';
-import { onPageView } from "../tracking/listeners/experienceEventsListeners";
+import { onPageView, onViewScene } from "../tracking/listeners/experienceEventsListeners";
 import { AnaliticasContext } from "../context/analiticas-context/AnaliticasContext";
 require("aframe-look-at-component");
 
@@ -56,7 +56,7 @@ require("aframe-look-at-component");
   const menuEnlacesOtrasRef = useRef(null)
 
   //manejo de Context de Analiticas
-  const {analiticasState, addEventHandler} = useContext(AnaliticasContext)
+  const {analiticasState, addEventHandler, setAnalyticState} = useContext(AnaliticasContext)
 
 
   const [titulo360Value, setTitulo360Value] = useState("");
@@ -348,8 +348,11 @@ require("aframe-look-at-component");
       case 2:
         return () => {
           if (playing) return;
-          if (e.escena) setEscena(e.escena, proyecto);
-          else {
+          if (e.escena) {
+            console.log(">>>>>>Navegando a la Escena: " + e.escena);
+            onViewScene(addEventHandler,{name_scene: e.escena});
+            setEscena(e.escena, proyecto)
+          }else {
             setPopUpTitulo(e.nombre);
             setPopUpContenido("No hay una escena asociada a este link");
             setOpen(true);
@@ -400,7 +403,10 @@ require("aframe-look-at-component");
       console.log("<<<<<<<<<DATOS DEL PROYECTO OBTENIDOS DEL FILE<<<<<<<<<<");
       console.log(data);
       //llamada el listner de visita de pagina
-      onPageView(addEventHandler, data.nombre);      
+      onPageView(setAnalyticState, {
+        id_experience: data.id,
+        name_experience: data.nombre,
+      });      
       setCargando(false);
       setAnimateEnabled(data.isAnimated);
       setUrlLink(data.linkUrl);
@@ -582,9 +588,9 @@ require("aframe-look-at-component");
 
   useEffect(() => {
     console.log("[PLAYER-VIEW]:::EFFECT", !location.proyectId);    
+    console.info("ESTADO GLOBAL EN EL EFFECT", analiticasState)
     setMouseEvents();
-    getProject();    
-    console.log("Estado de analiticas Context", analiticasState)
+    getProject();        
     isMobile();
     ReactGA.event({
       category: 'User', 
@@ -594,9 +600,9 @@ require("aframe-look-at-component");
       }
     });
     document.addEventListener("click", handleCardRelacionadas);
-    document.addEventListener("dblclick", () => {
-      setShowModalManual(true)
-    });
+    // document.addEventListener("dblclick", () => {
+    //   setShowModalManual(true)
+    // });
     
   }, []);
 
