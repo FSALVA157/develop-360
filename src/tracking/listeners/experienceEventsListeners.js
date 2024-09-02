@@ -30,8 +30,9 @@ export const onViewScene = (addEventHandler, event={}, eventsHistory) => {
     })
 
     addEventHandler({                
-        type: "Scene Vista",
-        name_scene: event.name_scene
+        type: VIEW_SCENE,
+        name_scene: event.name_scene,
+        count: 1
     })
     return event;
 }

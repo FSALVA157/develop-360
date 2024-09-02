@@ -1,4 +1,6 @@
+import { VIEW_SCENE } from "../../tracking/constants";
 import { analiticasTypes as types } from "./types";
+
 
 // const initialState = {
 //     id_experience: 0,
@@ -16,7 +18,26 @@ export const analiticasReducer = (state={}, action) => {
                 date:Date.now(),
                 additional:[]
             }
-        case types.addEvent:
+        case types.addEvent:            
+            if(action.payload.type === VIEW_SCENE){
+                const existIndexScene = state.additional.findIndex((event) => event.type === VIEW_SCENE && event.name_scene === action.payload.name_scene);
+                if(existIndexScene !== -1){
+                    const additionalUpdated = state.additional.map((event, index) => {
+                        if(index === existIndexScene){
+                            return {
+                                ...event,
+                                count: event.count + 1
+                            }
+                        }else{
+                            return event
+                        }                       
+                    });
+                    return {
+                        ...state,
+                        additional: additionalUpdated
+                    }
+                }    
+             }
             return {
                 ...state,
                 additional:[...state.additional, action.payload]                
