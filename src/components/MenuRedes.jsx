@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   AppstoreOutlined,
   MailOutlined,
@@ -12,17 +12,19 @@ import { onShareExperience } from "../tracking/listeners/experienceEventsListene
 import { shareExperienceEvent } from "../tracking/events/experienceEvents";
 import PropTypes from 'prop-types';
 import { withTracking } from 'react-tracker';
+import { AnaliticasContext } from "../context/analiticas-context/AnaliticasContext";
 
 const MenuRedes = ({ data, trackPageShared }) => {
   const { copied, handleCopy } = useCopyLink();
   const [showMenu, setShowMenu] = useState(true);
   const currentUrl = window.location.href;
+  const {addEventHandler} = useContext(AnaliticasContext)
 
   const handleOnCopy = () => {
     handleCopy();
-    onShareExperience({
+    onShareExperience(addEventHandler,{
       idExperienceShared: data.id,
-      nombreExperienceShared: data.nombre,
+      nameExperienceShared: data.nombre      
     });
   };
 

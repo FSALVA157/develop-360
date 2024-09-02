@@ -1,4 +1,4 @@
-import { VIEW_SCENE } from "../../tracking/constants";
+import { VIEW_SCENE, SHARE_EXPERIENCE } from "../../tracking/constants";
 import { analiticasTypes as types } from "./types";
 
 
@@ -37,6 +37,25 @@ export const analiticasReducer = (state={}, action) => {
                         additional: additionalUpdated
                     }
                 }    
+             }
+             if(action.payload.type === SHARE_EXPERIENCE){
+                const existIndexScene = state.additional.findIndex((event) => event.type === SHARE_EXPERIENCE && event.id_experience_shared === action.payload.id_experience_shared);
+                if(existIndexScene !== -1){
+                    const additionalUpdated = state.additional.map((event, index) => {
+                        if(index === existIndexScene){
+                            return {
+                                ...event,
+                                count: event.count + 1
+                            }
+                        }else{
+                            return event
+                        }                       
+                    });
+                    return {
+                        ...state,
+                        additional: additionalUpdated
+                    }
+                }
              }
             return {
                 ...state,

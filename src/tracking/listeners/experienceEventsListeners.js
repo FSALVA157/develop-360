@@ -44,11 +44,18 @@ onViewScene.eventType = VIEW_SCENE;
  * @param {Object} event 
  * @param {Array} eventsHistory 
  */
-export const onShareExperience = (event={}, eventsHistory) => {        
+export const onShareExperience = (addEventHandler, event={}, eventsHistory) => {        
     console.table({
         type: "Experiencia compartida",
         event: event,
     })
+    addEventHandler({                
+        type: SHARE_EXPERIENCE,
+        id_experience_shared: event.idExperienceShared,
+        name_scene: event.nameExperienceShared,
+        count: 1
+    })
+
     return event;
 }
 onShareExperience.eventType = SHARE_EXPERIENCE;
@@ -62,10 +69,7 @@ export const onPageView = (setAnalyticData, event, eventsHistory) => {
     
     // For example let's push the recieved event to our Datalyer!
     //window.dataLayer.push(event)
-    console.log({
-        type: "Pagina Visitada",
-        event: event,
-    })
+    
 
     setAnalyticData({        
         id_experience: event.id_experience,
