@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import { GoogleApi } from './components/googleApi';
 import Routes from './routes.js';
+import { AnaliticasProvider } from './context/analiticas-context/AnaliticasProvider';
 
 function App() {
   const [usuarioActivo, setUsuarioActivo] = useState(JSON.parse(localStorage.getItem('user')));
@@ -34,7 +35,9 @@ function App() {
   }, 5000);
   return (
     <div className="App">      
+    <AnaliticasProvider>
       <Routes googleAPI={googleAPI} usuarioActivo={usuarioActivo} setUsuarioActivo={setUsuarioActivo} />
+    </AnaliticasProvider>
     </div>
   );
 }

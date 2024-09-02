@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import AFRAME from "aframe";
 import { Entity } from "aframe-react";
@@ -20,14 +20,17 @@ import Visitas from "./Visitas";
 import MenuRedes from "./MenuRedes";
 import MenuEscenas from "./MenuEscenas";
 import MenuEnlaces from "./MenuEnlaces";
-import CardCar from "./CardCar";
 import { ModalManual } from "./manual-usuario/ModalManual";
 import MenuManual from "./MenuManual";
+import { withTracking } from 'react-tracker';
+import { pageViewEvent } from "../tracking/events/experienceEvents";
+import PropTypes from 'prop-types';
+import { onPageView, onViewScene } from "../tracking/listeners/experienceEventsListeners";
+import { AnaliticasContext } from "../context/analiticas-context/AnaliticasContext";
 require("aframe-look-at-component");
 
 
-
-export default function Player360() {
+ function Player360({trackPageView}) {
   const [open, setOpen] = useState(false);
   const [cargando, setCargando] = useState(false);
   const [popUpTitulo, setPopUpTitulo] = useState("");
@@ -51,6 +54,9 @@ export default function Player360() {
   //state que maneja el ocultamiento de la card de menu de otras segun click en pantalla
   const [desplegarCard, setDesplegarCard] = useState(false)
   const menuEnlacesOtrasRef = useRef(null)
+
+  //manejo de Context de Analiticas
+  const {analiticasState, addEventHandler, setAnalyticState} = useContext(AnaliticasContext)
 
 
   const [titulo360Value, setTitulo360Value] = useState("");
@@ -97,6 +103,7 @@ export default function Player360() {
 
   useEffect(() => {
     ReactGA.initialize(ANALYTICS_KEY);
+    
   }, []);
   
 
@@ -341,8 +348,11 @@ export default function Player360() {
       case 2:
         return () => {
           if (playing) return;
-          if (e.escena) setEscena(e.escena, proyecto);
-          else {
+          if (e.escena) {
+            console.log(">>>>>>Navegando a la Escena: " + e.escena);
+            onViewScene(addEventHandler,{name_scene: e.escena});
+            setEscena(e.escena, proyecto)
+          }else {
             setPopUpTitulo(e.nombre);
             setPopUpContenido("No hay una escena asociada a este link");
             setOpen(true);
@@ -392,6 +402,11 @@ export default function Player360() {
       setFileData(data);
       console.log("<<<<<<<<<DATOS DEL PROYECTO OBTENIDOS DEL FILE<<<<<<<<<<");
       console.log(data);
+      //llamada el listner de visita de pagina
+      onPageView(setAnalyticState, {
+        id_experience: data.id,
+        name_experience: data.nombre,
+      });      
       setCargando(false);
       setAnimateEnabled(data.isAnimated);
       setUrlLink(data.linkUrl);
@@ -572,9 +587,10 @@ export default function Player360() {
   };
 
   useEffect(() => {
-    console.log("[PLAYER-VIEW]:::EFFECT", !location.proyectId);
+    console.log("[PLAYER-VIEW]:::EFFECT", !location.proyectId);    
+    console.info("ESTADO GLOBAL EN EL EFFECT", analiticasState)
     setMouseEvents();
-    getProject();
+    getProject();        
     isMobile();
     ReactGA.event({
       category: 'User', 
@@ -584,9 +600,9 @@ export default function Player360() {
       }
     });
     document.addEventListener("click", handleCardRelacionadas);
-    document.addEventListener("dblclick", () => {
-      setShowModalManual(true)
-    });
+    // document.addEventListener("dblclick", () => {
+    //   setShowModalManual(true)
+    // });
     
   }, []);
 
@@ -865,7 +881,7 @@ export default function Player360() {
           // handleOptionButton={handleClickOptionButton}
          />
          <Visitas />         
-        <MenuRedes />
+        <MenuRedes data={proyecto} />
         <MenuManual  showModal={showModalManual} setShowModal={setShowModalManual}  />
         <div ref={menuEnlacesOtrasRef}>
           <MenuEnlaces handleLinkButton={handleNavigateRelated} data={linksDataState} handleShowFromPadre={handleCardRelacionadas} desplegarCard={desplegarCard}/>
@@ -891,3 +907,20 @@ export default function Player360() {
     
   );
 }
+
+Player360.propTypes = {  
+  trackPageView: PropTypes.func
+}
+
+const mapTrackingToProps = trackEvent => {  
+  return {
+    trackPageView: (pageName) =>{      
+       trackEvent(pageViewEvent(pageName))
+      }
+  };
+};
+
+const playerWithTracking = withTracking(mapTrackingToProps)(Player360)
+export default playerWithTracking
+
+//export default withTracking(mapTrackingToProps)(Player360)
