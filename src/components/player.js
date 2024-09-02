@@ -14,7 +14,7 @@ import EscenasMenu from "./escenasMenu";
 import { Alert } from "antd";
 import "animate.css";
 import MenuComponent from "./MenuComponent";
-import ReactGA from 'react-ga4';
+import ReactGA from "react-ga4";
 import MenuOtras from "./MenuOtras";
 import Visitas from "./Visitas";
 import MenuRedes from "./MenuRedes";
@@ -22,15 +22,17 @@ import MenuEscenas from "./MenuEscenas";
 import MenuEnlaces from "./MenuEnlaces";
 import { ModalManual } from "./manual-usuario/ModalManual";
 import MenuManual from "./MenuManual";
-import { withTracking } from 'react-tracker';
+import { withTracking } from "react-tracker";
 import { pageViewEvent } from "../tracking/events/experienceEvents";
-import PropTypes from 'prop-types';
-import { onPageView, onViewScene } from "../tracking/listeners/experienceEventsListeners";
+import PropTypes from "prop-types";
+import {
+  onPageView,
+  onViewScene,
+} from "../tracking/listeners/experienceEventsListeners";
 import { AnaliticasContext } from "../context/analiticas-context/AnaliticasContext";
 require("aframe-look-at-component");
 
-
- function Player360({trackPageView}) {
+function Player360({ trackPageView }) {
   const [open, setOpen] = useState(false);
   const [cargando, setCargando] = useState(false);
   const [popUpTitulo, setPopUpTitulo] = useState("");
@@ -48,16 +50,16 @@ require("aframe-look-at-component");
   const [animateEnabled, setAnimateEnabled] = useState(true);
   const [urlLink, setUrlLink] = useState("");
   const [showAlertLink, setShowAlertLink] = useState(false);
-  const [showMenuFloat, setShowMenuFloat] = useState(true)
+  const [showMenuFloat, setShowMenuFloat] = useState(true);
   const [desplegarMenu, setDesplegarMenu] = useState(false);
-  const [showModalManual, setShowModalManual] = useState(false)
+  const [showModalManual, setShowModalManual] = useState(false);
   //state que maneja el ocultamiento de la card de menu de otras segun click en pantalla
-  const [desplegarCard, setDesplegarCard] = useState(false)
-  const menuEnlacesOtrasRef = useRef(null)
+  const [desplegarCard, setDesplegarCard] = useState(false);
+  const menuEnlacesOtrasRef = useRef(null);
 
   //manejo de Context de Analiticas
-  const {analiticasState, addEventHandler, setAnalyticState} = useContext(AnaliticasContext)
-
+  const { analiticasState, addEventHandler, setAnalyticState } =
+    useContext(AnaliticasContext);
 
   const [titulo360Value, setTitulo360Value] = useState("");
   const [alertErrorMessage, setAlertErrorMessage] = useState({
@@ -70,7 +72,7 @@ require("aframe-look-at-component");
     twitter: "",
     youtube: "",
   });
-  
+
   const [linksDataState, setLinksData] = useState([]);
 
   const location = useParams();
@@ -103,9 +105,7 @@ require("aframe-look-at-component");
 
   useEffect(() => {
     ReactGA.initialize(ANALYTICS_KEY);
-    
   }, []);
-  
 
   const setEscena = (escenaTitulo, p) => {
     // console.log(escenaTitulo);
@@ -155,23 +155,25 @@ require("aframe-look-at-component");
     // console.log(event.target)
     // console.log("REFFFFFF", menuEnlacesOtrasRef.current)
     // console.log("contain event", !menuEnlacesOtrasRef.current.contains(event.target))
-    if (menuEnlacesOtrasRef.current && !menuEnlacesOtrasRef.current.contains(event.target)) {
-      console.log("CLICKEANDO AFUERA!!")
-      console.log(desplegarCard)
-      setDesplegarCard(prev => false)      
-    }else{
-      console.log("CLICKEANDO ADENTRO!!")
-      setDesplegarCard(prev => true)      
+    if (
+      menuEnlacesOtrasRef.current &&
+      !menuEnlacesOtrasRef.current.contains(event.target)
+    ) {
+      console.log("CLICKEANDO AFUERA!!");
+      console.log(desplegarCard);
+      setDesplegarCard((prev) => false);
+    } else {
+      console.log("CLICKEANDO ADENTRO!!");
+      setDesplegarCard((prev) => true);
     }
-    
-  }
+  };
 
   const handleClickLinkButton = (e) => {
     if (urlLink !== undefined && urlLink !== "") {
       ReactGA.event({
-        category: 'User', 
-        action: 'onLinkClick',
-      });  
+        category: "User",
+        action: "onLinkClick",
+      });
       window.open(urlLink, "_blank");
     } else {
       setAlertErrorMessage({
@@ -189,9 +191,9 @@ require("aframe-look-at-component");
   const handleNavigateRelated = (urlTarget) => {
     if (urlTarget !== undefined && urlTarget !== "") {
       ReactGA.event({
-        category: 'User', 
-        action: 'onLinkClick',
-      });  
+        category: "User",
+        action: "onLinkClick",
+      });
       window.open(urlTarget, "_blank");
     } else {
       setAlertErrorMessage({
@@ -206,13 +208,13 @@ require("aframe-look-at-component");
     }
   };
 
-  const handleClickPlusButton = (e) => {    
-    zoomIn(true);    
+  const handleClickPlusButton = (e) => {
+    zoomIn(true);
   };
 
-  const handleClickMinusButton = (e) => {    
+  const handleClickMinusButton = (e) => {
     zoomIn(false);
-  }
+  };
 
   const handleClickFullScreenButton = (e) => {
     setFullscreen();
@@ -223,13 +225,11 @@ require("aframe-look-at-component");
   };
 
   const handleClickOptionButton = (key_word) => {
-    
     switch (key_word) {
-      case "enlace_1_key":    
-        
+      case "enlace_1_key":
         break;
-      break;
-      case "animation_key":    
+        break;
+      case "animation_key":
         setAnimateEnabled(!animateEnabled);
         break;
       case "twitter_key":
@@ -350,9 +350,9 @@ require("aframe-look-at-component");
           if (playing) return;
           if (e.escena) {
             console.log(">>>>>>Navegando a la Escena: " + e.escena);
-            onViewScene(addEventHandler,{name_scene: e.escena});
-            setEscena(e.escena, proyecto)
-          }else {
+            onViewScene(addEventHandler, { name_scene: e.escena });
+            setEscena(e.escena, proyecto);
+          } else {
             setPopUpTitulo(e.nombre);
             setPopUpContenido("No hay una escena asociada a este link");
             setOpen(true);
@@ -406,7 +406,7 @@ require("aframe-look-at-component");
       onPageView(setAnalyticState, {
         id_experience: data.id,
         name_experience: data.nombre,
-      });      
+      });
       setCargando(false);
       setAnimateEnabled(data.isAnimated);
       setUrlLink(data.linkUrl);
@@ -479,7 +479,7 @@ require("aframe-look-at-component");
       if (toques.length == 1) {
         if (toques[0].clientX == touchPos.x && toques[0].clientY == touchPos.y)
           tapBackground();
-        setDesplegarMenu(prev => !prev);
+        setDesplegarMenu((prev) => !prev);
       }
     });
 
@@ -510,7 +510,7 @@ require("aframe-look-at-component");
     });
 
     window.addEventListener("click", (e) => {
-      setAnimateEnabled(false);      
+      setAnimateEnabled(false);
       //setDesplegarMenu(prev => !prev);
       // console.log("showMenuFloat antes de cambiarlo", showMenuFloat);
       // setShowMenuFloat((prev) => {
@@ -539,7 +539,7 @@ require("aframe-look-at-component");
   };
 
   const tapBackground = () => {
-    setDesplegarMenu(prev => !prev);
+    setDesplegarMenu((prev) => !prev);
     let escenasContainer = document.getElementById("escenasContainer");
     escenasContainer.classList.add("hidden-scenes");
     console.log("tapBackground", timeOutClick);
@@ -587,23 +587,22 @@ require("aframe-look-at-component");
   };
 
   useEffect(() => {
-    console.log("[PLAYER-VIEW]:::EFFECT", !location.proyectId);    
-    console.info("ESTADO GLOBAL EN EL EFFECT", analiticasState)
+    console.log("[PLAYER-VIEW]:::EFFECT", !location.proyectId);
+    console.info("ESTADO GLOBAL EN EL EFFECT", analiticasState);
     setMouseEvents();
-    getProject();        
+    getProject();
     isMobile();
     ReactGA.event({
-      category: 'User', 
-      action: 'onLoadExperience',
+      category: "User",
+      action: "onLoadExperience",
       data: {
-        user_rol: 'visitor',
-      }
+        user_rol: "visitor",
+      },
     });
     document.addEventListener("click", handleCardRelacionadas);
     // document.addEventListener("dblclick", () => {
     //   setShowModalManual(true)
     // });
-    
   }, []);
 
   useEffect(() => {
@@ -611,25 +610,24 @@ require("aframe-look-at-component");
   }, [animateEnabled]);
 
   return (
-    
-      <>
-        {" "}
-        <LoadingSpin visible={cargando} />
-        <OpenProject visible={!location.proyectId} setFileData={setFileData} />
-        <PopUpMsg
-          visible={open}
-          titulo={popUpTitulo}
-          contenido={popUpContenido}
-          alCerrar={cerrarPopUp}
-        />
-        <EscenasMenu
-          escenas={proyecto ? proyecto.escenas : []}
-          setEscena={(e) => setEscena(e, proyecto)}
-        />
-        <div id="tooltip" className="hidden"></div>
-        {!cargando && proyecto && !open && !playing && (
-          <div id="banner" className="hidden-menu">
-            {/* <div
+    <>
+      {" "}
+      <LoadingSpin visible={cargando} />
+      <OpenProject visible={!location.proyectId} setFileData={setFileData} />
+      <PopUpMsg
+        visible={open}
+        titulo={popUpTitulo}
+        contenido={popUpContenido}
+        alCerrar={cerrarPopUp}
+      />
+      <EscenasMenu
+        escenas={proyecto ? proyecto.escenas : []}
+        setEscena={(e) => setEscena(e, proyecto)}
+      />
+      <div id="tooltip" className="hidden"></div>
+      {!cargando && proyecto && !open && !playing && (
+        <div id="banner" className="hidden-menu">
+          {/* <div
               className="controlbutton"
               id="zoominbutton"
               onClick={() => zoomIn(true)}
@@ -639,24 +637,24 @@ require("aframe-look-at-component");
               id="zoomoutbutton"
               onClick={() => zoomIn(false)}
             ></div> */}
-            {/* <div
+          {/* <div
               className="controlbutton"
               id="fullscreenbutton"
               onClick={setFullscreen}
             ></div> */}
-            {/* <div
+          {/* <div
               className="controlbutton"
               id="linkbutton"
               onClick={handleClickLinkButton}
             ></div> */}
-            {/* <div
+          {/* <div
               className="controlbutton"
               id="vrbutton"
               ref={vrbutton}
               onClick={setVR}
               style={{ display: isMobileXp ? "block" : "none" }}
             ></div> */}
-            {/* <div
+          {/* <div
               className="controlbutton"
               id="shortcutbutton"
               ref={vrbutton}
@@ -664,202 +662,209 @@ require("aframe-look-at-component");
             >
               <ApartmentOutlined style={{ fontSize: 45 }} />
             </div> */}
-          </div>
-        )}
-        <a-scene
-          ref={escena}
-          onMouseDown={(e) => {
-            if (e.clientX != undefined)
-              setMousePos({ x: e.clientX, y: e.clientY });
-          }}
-          onMouseUp={(e) => {
-            if (
-              e.clientX != undefined &&
-              e.clientX == mousePos.x &&
-              e.clientY == mousePos.y
-            )
-              tapBackground();
-          }}
-        >
-          <a-assets>
-            <img id="plus" src={info} alt="plus" />
-            <img id="gafas" src={gafas_white} alt="gafas" />
-            <img id="playvideo" src={video} alt="playvideo" />
-            <img id="image" src={image} alt="image" />
-            <img id="imageURL" src="" alt="imageURL" />
-            <video
-              ref={videoControl}
-              id="videocontrol"
-              width="100%"
-              src={mobileVideoSrc}
-              controls
-              autoPlay
-            />
-          </a-assets>
-          <a-sky
-            ref={cielo}
-            id="cielo"
-            src={
-              proyecto && proyecto.escenas.length
-                ? proyecto.escenas[escenaIndex].fondo
-                : ""
-            }
-            rotation="0 90 0"
-            material="opacity: 1; transparent:true"
-            animation__fade_in="property: material.opacity; from: 0; to: 1; dur: 1500; startEvents: fadein"
-            animation__fade_out="property: material.opacity; from: 1; to: 0; dur: 500; startEvents: fadeout"
+        </div>
+      )}
+      <a-scene
+        ref={escena}
+        onMouseDown={(e) => {
+          if (e.clientX != undefined)
+            setMousePos({ x: e.clientX, y: e.clientY });
+        }}
+        onMouseUp={(e) => {
+          if (
+            e.clientX != undefined &&
+            e.clientX == mousePos.x &&
+            e.clientY == mousePos.y
+          )
+            tapBackground();
+        }}
+      >
+        <a-assets>
+          <img id="plus" src={info} alt="plus" />
+          <img id="gafas" src={gafas_white} alt="gafas" />
+          <img id="playvideo" src={video} alt="playvideo" />
+          <img id="image" src={image} alt="image" />
+          <img id="imageURL" src="" alt="imageURL" />
+          <video
+            ref={videoControl}
+            id="videocontrol"
+            width="100%"
+            src={mobileVideoSrc}
+            controls
+            autoPlay
           />
-          <a-camera
-            id="camara"
-            ref={camara}
-            animation={`property: rotation; from: 0 0 0; to: 0 360 0; dur: 800000; loop: true; easing:linear; enabled: ${animateEnabled};`}
-          >
-            <a-cursor
-              position="0 0 -1"
-              id="cursor"
-              ref={cursor}
-              cursor="fuse: true; fuseTimeout: 100"
-              raycaster="objects: .objeto"
-              material="shader:flat; color:white"
-            />
-          </a-camera>
-          <a-mixin
-            id="msg-button"
-            geometry="primitive: circle; radius:2;"
-            animation__scale="property: scale; to: 2.2 2.2 2.2; dur: 200; startEvents: mouseenter"
-            animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
-            material="color: white; opacity: 0.5; transparent: true; shader: flat; src: #plus; side: double"
-            clickeable
-          ></a-mixin>
-          <a-mixin
-            id="view-button"
-            geometry="primitive: circle; radius:5;"
-            material="opacity: 1; transparent:true; shader: flat; src: #gafas; side: double"
-            animation__scale="property: scale; to: 2.2 2.2 2.2; dur: 200; startEvents: mouseenter"
-            animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
-            animation="property: rotation; dur:3000; to: 0 360 0; easing:linear; loop:true"
-            clickeable
-          ></a-mixin>
-          <a-mixin
-            id="video-button"
-            geometry="primitive: circle; radius:1;"
-            material="color: white; opacity: 0.5; transparent: true; shader: flat; src: #playvideo; side: double"
-            animation__scale="property: scale; to: 2.2 2.2 2.2; dur: 200; startEvents: mouseenter"
-            animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
-            border="sides: 4; radius: 25; wall: #rail;"
-            clickeable
-          ></a-mixin>
-          <a-mixin
-            id="image-button"
-            geometry="primitive: circle; radius:1;"
-            material="color: white; opacity: 0.5; transparent: true; shader: flat; src: #image; side: double"
-            animation__scale="property: scale; to: 2.2 2.2 2.2; dur: 200; startEvents: mouseenter"
-            animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
-            border="sides: 4; radius: 25; wall: #rail;"
-            clickeable
-          ></a-mixin>
-          <a-plane
-            id="player"
-            width="42"
-            height="32"
-            look-at="#camara"
-            position={mobilePlayerPos}
-            visible={playing}
-          >
-            <a-entity
-              position="1.5 8.5 10"
+        </a-assets>
+        <a-sky
+          ref={cielo}
+          id="cielo"
+          src={
+            proyecto && proyecto.escenas.length
+              ? proyecto.escenas[escenaIndex].fondo
+              : ""
+          }
+          rotation="0 90 0"
+          material="opacity: 1; transparent:true"
+          animation__fade_in="property: material.opacity; from: 0; to: 1; dur: 1500; startEvents: fadein"
+          animation__fade_out="property: material.opacity; from: 1; to: 0; dur: 500; startEvents: fadeout"
+        />
+        <a-camera
+          id="camara"
+          ref={camara}
+          animation={`property: rotation; from: 0 0 0; to: 0 360 0; dur: 800000; loop: true; easing:linear; enabled: ${animateEnabled};`}
+        >
+          <a-cursor
+            position="0 0 -1"
+            id="cursor"
+            ref={cursor}
+            cursor="fuse: true; fuseTimeout: 100"
+            raycaster="objects: .objeto"
+            material="shader:flat; color:white"
+          />
+        </a-camera>
+        <a-mixin
+          id="msg-button"
+          geometry="primitive: circle; radius:2;"
+          animation__scale="property: scale; to: 2.2 2.2 2.2; dur: 200; startEvents: mouseenter"
+          animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
+          material="color: white; opacity: 0.5; transparent: true; shader: flat; src: #plus; side: double"
+          clickeable
+        ></a-mixin>
+        <a-mixin
+          id="view-button"
+          geometry="primitive: circle; radius:5;"
+          material="opacity: 1; transparent:true; shader: flat; src: #gafas; side: double"
+          animation__scale="property: scale; to: 2.2 2.2 2.2; dur: 200; startEvents: mouseenter"
+          animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
+          animation="property: rotation; dur:3000; to: 0 360 0; easing:linear; loop:true"
+          clickeable
+        ></a-mixin>
+        <a-mixin
+          id="video-button"
+          geometry="primitive: circle; radius:1;"
+          material="color: white; opacity: 0.5; transparent: true; shader: flat; src: #playvideo; side: double"
+          animation__scale="property: scale; to: 2.2 2.2 2.2; dur: 200; startEvents: mouseenter"
+          animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
+          border="sides: 4; radius: 25; wall: #rail;"
+          clickeable
+        ></a-mixin>
+        <a-mixin
+          id="image-button"
+          geometry="primitive: circle; radius:1;"
+          material="color: white; opacity: 0.5; transparent: true; shader: flat; src: #image; side: double"
+          animation__scale="property: scale; to: 2.2 2.2 2.2; dur: 200; startEvents: mouseenter"
+          animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
+          border="sides: 4; radius: 25; wall: #rail;"
+          clickeable
+        ></a-mixin>
+        <a-plane
+          id="player"
+          width="42"
+          height="32"
+          look-at="#camara"
+          position={mobilePlayerPos}
+          visible={playing}
+        >
+          <a-entity
+            position="1.5 8.5 10"
+            text={
+              "shader: msdf; anchor: center; width: 30; font: https://cdn.aframe.io/examples/ui/Viga-Regular.json; color: black; value: " +
+              popUpTitulo
+            }
+          />
+          {!popUpContenido && !VRPopUpImage && (
+            <a-video
+              src="#videocontrol"
+              width="37"
+              height="23"
+              rotation="0 0 0"
+              position="0 0 1"
+              visible={!popUpContenido && !VRPopUpImage}
+              border="sides: 4; radius: 25; wall: #rail;"
+            ></a-video>
+          )}
+          {VRPopUpImage && (
+            <Entity
+              width="37"
+              height="23"
+              rotation="0 0 0"
+              position="0 0 1"
+              visible={VRPopUpImage}
+              geometry="primitive: plane; height: 23; width: 37"
+              material="shader: flat; src: #imageURL; side: double"
+              border="sides: 4; radius: 25; wall: #rail;"
+            ></Entity>
+          )}
+          {popUpContenido && (
+            <Entity
+              position="-12.5 2.5 10"
+              visible={popUpContenido}
               text={
-                "shader: msdf; anchor: center; width: 30; font: https://cdn.aframe.io/examples/ui/Viga-Regular.json; color: black; value: " +
-                popUpTitulo
+                popUpContenido
+                  ? "shader: msdf; anchor: left; width: 25; font: https://cdn.aframe.io/examples/ui/Viga-Regular.json; color: black; value: " +
+                    popUpContenido
+                  : ""
               }
             />
-            {!popUpContenido && !VRPopUpImage && (
-              <a-video
-                src="#videocontrol"
-                width="37"
-                height="23"
-                rotation="0 0 0"
-                position="0 0 1"
-                visible={!popUpContenido && !VRPopUpImage}
-                border="sides: 4; radius: 25; wall: #rail;"
-              ></a-video>
-            )}
-            {VRPopUpImage && (
-              <Entity
-                width="37"
-                height="23"
-                rotation="0 0 0"
-                position="0 0 1"
-                visible={VRPopUpImage}
-                geometry="primitive: plane; height: 23; width: 37"
-                material="shader: flat; src: #imageURL; side: double"
-                border="sides: 4; radius: 25; wall: #rail;"
-              ></Entity>
-            )}
-            {popUpContenido && (
-              <Entity
-                position="-12.5 2.5 10"
-                visible={popUpContenido}
-                text={
-                  popUpContenido
-                    ? "shader: msdf; anchor: left; width: 25; font: https://cdn.aframe.io/examples/ui/Viga-Regular.json; color: black; value: " +
-                      popUpContenido
-                    : ""
-                }
-              />
-            )}
-            <Entity
-              position="8 -10 10"
-              className="objeto"
-              animation__scale="property: scale; to: 1.5 1.5 1.5; dur: 200; startEvents: mouseenter"
-              animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
-              text="shader: msdf; anchor: left; width: 20; font: https://cdn.aframe.io/examples/ui/Viga-Regular.json; color: black; value: ok"
-              events={{
-                click: cerrarPopUp,
-              }}
-            />
-          </a-plane>
-          {/*<Entity
+          )}
+          <Entity
+            position="8 -10 10"
+            className="objeto"
+            animation__scale="property: scale; to: 1.5 1.5 1.5; dur: 200; startEvents: mouseenter"
+            animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave"
+            text="shader: msdf; anchor: left; width: 20; font: https://cdn.aframe.io/examples/ui/Viga-Regular.json; color: black; value: ok"
+            events={{
+              click: cerrarPopUp,
+            }}
+          />
+        </a-plane>
+        {/*<Entity
               id="tooltip"
               visible={false}
               text="shader: msdf; anchor: left; width: 40; font: https://cdn.aframe.io/examples/ui/Viga-Regular.json; color: white; value: ok"
                   />*/}
-          {proyecto && proyecto.escenas.length
-            ? proyecto.escenas[escenaIndex].elementos.map((e, k) => (
-                <Entity
-                  key={k}
-                  position={`${e.position.x} ${e.position.y} ${e.position.z}`}
-                  rotation={`${e.rotation.x} ${e.rotation.y} ${e.rotation.z}`}
-                  mixin={getTipo(e)}
-                  id={e.id}
-                  className="objeto"
-                  visible={!playing}
-                  events={{
-                    click: getFunction(e),
-                    mouseenter: (s) => showTooltip(e),
-                    mouseleave: () => hideTooltip(e),
-                  }}
-                />
-              ))
-            : ""}
-        </a-scene>
-        {showAlertLink && (
-          <Alert
-            id="alertLink"
-            message={alertErrorMessage.titulo}
-            description={alertErrorMessage.mensaje}
-            type="error"
-            style={{ opacity: 0.4 }}
-          />
-        )}
-        <h1 class="titleExperiencia">{titulo360Value}</h1>
-      
-        {desplegarMenu &&(<div
-            className={`animate__animated ${
-              showMenuFloat ? "animate__fadeIn" : "animate__fadeOut"
-            }`}
-      
-            >
+        {proyecto && proyecto.escenas.length
+          ? proyecto.escenas[escenaIndex].elementos.map((e, k) => (
+              <Entity
+                key={k}
+                position={`${e.position.x} ${e.position.y} ${e.position.z}`}
+                rotation={`${e.rotation.x} ${e.rotation.y} ${e.rotation.z}`}
+                mixin={getTipo(e)}
+                id={e.id}
+                className="objeto"
+                visible={!playing}
+                events={{
+                  click: getFunction(e),
+                  mouseenter: (s) => showTooltip(e),
+                  mouseleave: () => hideTooltip(e),
+                }}
+              />
+            ))
+          : ""}
+        <a-text
+          font="kelsonsans"
+          value={JSON.stringify(analiticasState, null, 2)}
+          width="6"
+          position="-2.5 -2 -10"
+          rotation="0 0 0"
+          wrap-count="30"
+        ></a-text>
+      </a-scene>
+      {showAlertLink && (
+        <Alert
+          id="alertLink"
+          message={alertErrorMessage.titulo}
+          description={alertErrorMessage.mensaje}
+          type="error"
+          style={{ opacity: 0.4 }}
+        />
+      )}
+      <h1 class="titleExperiencia">{titulo360Value}</h1>
+      {desplegarMenu && (
+        <div
+          className={`animate__animated ${
+            showMenuFloat ? "animate__fadeIn" : "animate__fadeOut"
+          }`}
+        >
           <MenuComponent
             id="menuFlotante"
             handleLinkButton={handleClickLinkButton}
@@ -871,56 +876,56 @@ require("aframe-look-at-component");
             desplegarMenu={desplegarMenu}
             setDesplegarMenu={setDesplegarMenu}
             isMobile={isMobileXp}
-            setVR = {setVR}
+            setVR={setVR}
           />
-        </div>)}
-
-        <MenuOtras
-          // id="menuFlotanteOtras"
-          handleLinkButton={handleClickLinkButton}
-          // handleOptionButton={handleClickOptionButton}
-         />
-         <Visitas />         
-        <MenuRedes data={proyecto} />
-        <MenuManual  showModal={showModalManual} setShowModal={setShowModalManual}  />
-        <div ref={menuEnlacesOtrasRef}>
-          <MenuEnlaces handleLinkButton={handleNavigateRelated} data={linksDataState} handleShowFromPadre={handleCardRelacionadas} desplegarCard={desplegarCard}/>
         </div>
-
-        {/* <div style={{display: "block"}}>
+      )}
+      <MenuOtras
+        // id="menuFlotanteOtras"
+        handleLinkButton={handleClickLinkButton}
+        // handleOptionButton={handleClickOptionButton}
+      />
+      <Visitas />
+      <MenuRedes data={proyecto} />
+      <MenuManual
+        showModal={showModalManual}
+        setShowModal={setShowModalManual}
+      />
+      <div ref={menuEnlacesOtrasRef}>
+        <MenuEnlaces
+          handleLinkButton={handleNavigateRelated}
+          data={linksDataState}
+          handleShowFromPadre={handleCardRelacionadas}
+          desplegarCard={desplegarCard}
+        />
+      </div>
+      {/* <div style={{display: "block"}}>
           <CardCar />
         </div> */}
-        <MenuEscenas
+      <MenuEscenas
         handleClickScenesButton={handleClickScenesButton}
-        >          
-        </MenuEscenas>
-
-         
-        
-          <ModalManual  showModal={showModalManual} setShowModal={setShowModalManual}  />
-        
-        
-        
-         
-      
-      </>
-    
+      ></MenuEscenas>
+      <ModalManual
+        showModal={showModalManual}
+        setShowModal={setShowModalManual}
+      />
+    </>
   );
 }
 
-Player360.propTypes = {  
-  trackPageView: PropTypes.func
-}
+Player360.propTypes = {
+  trackPageView: PropTypes.func,
+};
 
-const mapTrackingToProps = trackEvent => {  
+const mapTrackingToProps = (trackEvent) => {
   return {
-    trackPageView: (pageName) =>{      
-       trackEvent(pageViewEvent(pageName))
-      }
+    trackPageView: (pageName) => {
+      trackEvent(pageViewEvent(pageName));
+    },
   };
 };
 
-const playerWithTracking = withTracking(mapTrackingToProps)(Player360)
-export default playerWithTracking
+const playerWithTracking = withTracking(mapTrackingToProps)(Player360);
+export default playerWithTracking;
 
 //export default withTracking(mapTrackingToProps)(Player360)
