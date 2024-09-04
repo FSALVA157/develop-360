@@ -28,6 +28,7 @@ import PropTypes from "prop-types";
 import {
   onPageView,
   onViewScene,
+  onCalculateSpent
 } from "../tracking/listeners/experienceEventsListeners";
 import { AnaliticasContext } from "../context/analiticas-context/AnaliticasContext";
 require("aframe-look-at-component");
@@ -61,6 +62,10 @@ function Player360({ trackPageView }) {
   const { analiticasState, addEventHandler, setAnalyticState } =
     useContext(AnaliticasContext);
 
+  //variables para analitica de permanencia
+  const [spentTime, setSpentTime] = useState(0);
+  let startTime;
+
   const [titulo360Value, setTitulo360Value] = useState("");
   const [alertErrorMessage, setAlertErrorMessage] = useState({
     titulo: "",
@@ -86,7 +91,7 @@ function Player360({ trackPageView }) {
   var distanciaTouch = 0;
   var touchPos = { x: 0, y: 0 };
 
-  const ANALYTICS_KEY = process.env.REACT_APP_GOOGLE_ANALYTICS_KEY;
+  // const ANALYTICS_KEY = process.env.REACT_APP_GOOGLE_ANALYTICS_KEY;
 
   const getTipo = (e) => {
     switch (e.tipo) {
@@ -103,9 +108,9 @@ function Player360({ trackPageView }) {
     }
   };
 
-  useEffect(() => {
-    ReactGA.initialize(ANALYTICS_KEY);
-  }, []);
+  // useEffect(() => {
+  //   ReactGA.initialize(ANALYTICS_KEY);
+  // }, []);
 
   const setEscena = (escenaTitulo, p) => {
     // console.log(escenaTitulo);
@@ -403,7 +408,7 @@ function Player360({ trackPageView }) {
       console.log("<<<<<<<<<DATOS DEL PROYECTO OBTENIDOS DEL FILE<<<<<<<<<<");
       console.log(data);
       //llamada el listner de visita de pagina
-      onPageView(setAnalyticState, {
+      onPageView(addEventHandler, {
         id_experience: data.id,
         name_experience: data.nombre,
       });
@@ -587,8 +592,23 @@ function Player360({ trackPageView }) {
   };
 
   useEffect(() => {
-    console.log("[PLAYER-VIEW]:::EFFECT", !location.proyectId);
-    console.info("ESTADO GLOBAL EN EL EFFECT", analiticasState);
+    //inicio contador de tiempo de permanencia
+    startTime = Date.now();    
+
+    const handleBeforeUnload = () => {
+      const endTime = Date.now();
+      const duration = (endTime - startTime) / 1000;
+      setSpentTime(duration);
+      sessionStorage.setItem('tiempoPermanencia', duration);
+      onCalculateSpent({
+        idExperience: proyecto.id,
+        nameExperience: proyecto.nombre,
+        timeSeconds: duration
+      })      
+    }
+    
+
+    console.log("[PLAYER-VIEW]:::EFFECT", !location.proyectId);    
     setMouseEvents();
     getProject();
     isMobile();
@@ -603,6 +623,12 @@ function Player360({ trackPageView }) {
     // document.addEventListener("dblclick", () => {
     //   setShowModalManual(true)
     // });
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      
+    }
   }, []);
 
   useEffect(() => {

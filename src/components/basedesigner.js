@@ -42,6 +42,7 @@ import Publicar from "./publicar";
 import SceneInspector from "./sceneInspector";
 import GuardandoQueue from "./guardandoQueue";
 import { FormEnlances } from "../FormEnlances";
+import { ModalFormLogin } from "./auth-components/ModalFormLogin";
 const { Header, Content, Footer, Sider } = Layout;
 
 const BaseDesigner = ({ usuarioActivo, setUsuarioActivo, googleAPI }) => {
@@ -798,8 +799,9 @@ const BaseDesigner = ({ usuarioActivo, setUsuarioActivo, googleAPI }) => {
           }}
         >
           Griftin 360 Designer ©{new Date().getFullYear()}
+          
         </Footer>
-
+        <ModalFormLogin/>
         <LoadingSpin visible={loading} />
         <ArchivadasForm
           visible={mostrarArchivadasForm}
@@ -832,6 +834,7 @@ const BaseDesigner = ({ usuarioActivo, setUsuarioActivo, googleAPI }) => {
           alCerrar={() => setMostrarPublicar(false)}
         />
       </Layout>
+      
     </Layout>
   );
 };

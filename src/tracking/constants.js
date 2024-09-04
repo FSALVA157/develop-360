@@ -2,3 +2,4 @@ export const PURCHASE_PRODUCT = 'PURCHASE_PRODUCT';
 export const SHARE_EXPERIENCE = 'SHARE_EXPERIENCE';
 export const PAGE_VIEW = 'PAGE_VIEW';
 export const VIEW_SCENE = 'VIEW_SCENE';
+export const TIME_SPENT = 'TIME_SPENT';

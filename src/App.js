@@ -36,8 +36,9 @@ function App() {
   return (
     <div className="App">      
     <AnaliticasProvider>
+
       <Routes googleAPI={googleAPI} usuarioActivo={usuarioActivo} setUsuarioActivo={setUsuarioActivo} />
-    </AnaliticasProvider>
+    </AnaliticasProvider>    
     </div>
   );
 }

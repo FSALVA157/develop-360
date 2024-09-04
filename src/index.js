@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {TrackerProvider, Tracker} from 'react-tracker'
 import trackingListeners from './tracking/listeners';
+import { AuthProvider } from './context/auth-context/AuthProvider';
 
 
 //const tracker = new Tracker([pageViewEvent,shareExperienceEvent]);
@@ -14,7 +15,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <TrackerProvider tracker={tracker}>
+    <AuthProvider>
     <App />
+    </AuthProvider>
     </TrackerProvider>
   </React.StrictMode>
 );
