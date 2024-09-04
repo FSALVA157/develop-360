@@ -7,12 +7,7 @@ import { analiticasTypes as types } from './types'
 
 export const AnaliticasProvider = ({ children }) => {
 
- const [analiticasState, dispatch] = useReducer(analiticasReducer, {
-    id_experience: 0,
-    name_experience: 'experience name',
-    date: Date.now(),
-    additional:[]
-  })
+ const [analiticasState, dispatch] = useReducer(analiticasReducer, [])
 
   const setAnalyticState = (data) => {
     dispatch({

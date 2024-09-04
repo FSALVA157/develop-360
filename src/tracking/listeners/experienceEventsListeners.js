@@ -1,9 +1,10 @@
-import { useContext } from 'react';
+
 import {
     PURCHASE_PRODUCT,
     SHARE_EXPERIENCE,
     PAGE_VIEW,
-    VIEW_SCENE
+    VIEW_SCENE,
+    TIME_SPENT
 } from '../constants'
 
 
@@ -13,21 +14,24 @@ import {
  * @param {Object} event 
  * @param {Array} eventsHistory 
  */
-export const onPurchase = (event = {}, eventsHistory) => {
-    // For example let's push the recieved event to our Datalyer!
-    window.dataLayer.push(event)
+export const onCalculateSpent = (addEventHandler, event={}, eventsHistory) => {        
+    console.table({
+        type: "Tiempo Permanencia",
+        event: event,
+    })
+    addEventHandler({                
+        type: TIME_SPENT,
+        id_experience: event.idExperience,
+        name_scene: event.nameExperience,
+        timeSeconds: event.timeSeconds,        
+    })
 
-    // In order to save this event in the history (so we can log it) we should return it!
-    // otherwise it will be ignored!
     return event;
 }
-onPurchase.eventType = PURCHASE_PRODUCT;
+onCalculateSpent.eventType = TIME_SPENT;
 
 export const onViewScene = (addEventHandler, event={}, eventsHistory) => {        
-    console.table({
-        type: "Scene Vista",
-        event: event.name_scene,
-    })
+    
 
     addEventHandler({                
         type: VIEW_SCENE,
@@ -42,7 +46,7 @@ onViewScene.eventType = VIEW_SCENE;
 /**
  * Listener on share Experience
  * @param {Object} event 
- * @param {Array} eventsHistory 
+ * 
  */
 export const onShareExperience = (addEventHandler, event={}, eventsHistory) => {        
     console.table({
@@ -65,13 +69,14 @@ onShareExperience.eventType = SHARE_EXPERIENCE;
  * @param {Object} event 
  * @param {Array} eventsHistory 
  */
-export const onPageView = (setAnalyticData, event, eventsHistory) => {
+export const onPageView = (addEventHandler, event, eventsHistory) => {
     
     // For example let's push the recieved event to our Datalyer!
     //window.dataLayer.push(event)
     
 
-    setAnalyticData({        
+    addEventHandler({        
+        type: PAGE_VIEW,
         id_experience: event.id_experience,
         name_experience: event.name_experience,
     })
