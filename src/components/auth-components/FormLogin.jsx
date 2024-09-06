@@ -74,6 +74,7 @@ const FormLogin = ({handleCloseModal, setIsRegister}) => {
         console.log(error)
       }finally {
         setisLoading(false);
+        handleCloseModal(false);
       }
       
     },

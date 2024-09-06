@@ -9,17 +9,17 @@ import FormRegister from './FormRegister';
 export const ModalFormLogin = (
     // {showModal, setShowModal}
 ) => {
-  const [isClosed, setIsClosed] = useState(false)
+  const [isOpen, setIsOpen] = useState(true)
   const [isRegister, setIsRegister] = useState(true)
 
   const handleCloseModal = (e) => {    
     //e.preventDefault()    
-    setIsClosed(true)
+    setIsOpen(false)
   }
 
   return ReactDOM.createPortal(    
         
-          <Modal open={true}       
+          <Modal open={isOpen}       
            
            styles={{
             content: {
