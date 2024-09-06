@@ -10,7 +10,9 @@ export const ProgressPermanencia = () => {
       <Flex gap="small" vertical>
         {
             metrica_permanencia.map((item, index) => (
-                <div style={{display: 'inline-flex', justifyContent: 'space-between',
+                <div style={{display: 'flex',
+                   flexDirection: 'column',
+                   justifyContent: 'space-between',
                 marginBottom: 30,
                 }}>
                 <span>{item.recorrido}  </span>

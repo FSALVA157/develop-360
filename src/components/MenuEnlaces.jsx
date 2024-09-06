@@ -8,6 +8,7 @@ import habitacionSvg from '../assets/habitacion.svg'
 import genericLink from '../assets/genericLink.svg'
 import CardCar from "./CardCar";
 import 'animate.css'
+import ColumnGroup from "antd/es/table/ColumnGroup";
 
 
 const initialStateDataSelected = { 
@@ -67,6 +68,8 @@ const MenuEnlaces = ({ handleLinkButton, data=[], handleShowFromPadre, desplegar
           </div>
         ),
       }));
+      console.log(newItems)
+
     
       setItems(newItems);
     },
@@ -77,7 +80,9 @@ const MenuEnlaces = ({ handleLinkButton, data=[], handleShowFromPadre, desplegar
   
 
   useEffect(() => {    
-    renderItems()   
+    if (data.length > 0) {
+      renderItems();
+    }
   }, [data]);   
 
   useEffect(() => {

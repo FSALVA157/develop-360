@@ -83,28 +83,32 @@ export const Analiticas = () => {
           <Divider orientation="left">Analiticas</Divider>
           <Row>
             <Col
-              style={{ minWidth: "300px", backgroundColor: "#F9F9F9" }}
-              flex="1 1 50%"
+               xs={24} sm={12} md={12} lg={12}
+              style={{  backgroundColor: "#F9F9F9" }}
+              flex="1 1 20%"
             >
               <Divider>Metricas Individuales</Divider>
               <RenderGraficosCard children={<MetricasIndividuales metricasGenerales={metricasGenerales} />}/>
       
             </Col>
-            <Col style={{ minWidth: "300px" }} flex="1 1 50%">
+            <Col 
+               xs={24} sm={12} md={12} lg={12} style={{ backgroundColor: "#F9F9F9" }} flex="1 1 80%">
               <Divider>Ranking de Mas Visitadas</Divider>
               <RenderGraficosCard children={<BarChartRecorridos />} />
             </Col>
           </Row>
           <Row>
             <Col
-              style={{ minWidth: "300px", backgroundColor: "#F9F9F9" }}
+             xs={24} sm={12} md={12} lg={12}
+              style={{  backgroundColor: "#F9F9F9" }}
               flex="1 1 50%"
             >
               <Divider>Grafico de Dispositivos</Divider>
               <RenderGraficosCard children={<PieChartDispositivos />} />
             </Col>
             <Col
-              style={{ minWidth: "300px", backgroundColor: "#F9F9F9" }}
+             xs={24} sm={12} md={12} lg={12}
+              style={{  backgroundColor: "#F9F9F9" }}
               flex="1 1 50%"
             >
               <Divider>Agregados al Carrito</Divider>
@@ -113,14 +117,16 @@ export const Analiticas = () => {
           </Row>
           <Row>
             <Col
-              style={{ minWidth: "300px", backgroundColor: "#F9F9F9" }}
+              xs={0} sm={12} md={12} lg={12}
+              style={{  backgroundColor: "#F9F9F9" }}
               flex="1 1 50%"
             >
               <Divider>Experiencias</Divider>
               <RenderGraficosCard children={<TablaExperiencias />} />
             </Col>
             <Col
-              style={{ minWidth: "300px", backgroundColor: "#F9F9F9" }}
+              xs={24} sm={12} md={12} lg={12}
+              style={{  backgroundColor: "#F9F9F9" }}
               flex="1 1 50%"
             >
               <Divider>Recorridos Mas Visitadas</Divider>
@@ -131,14 +137,16 @@ export const Analiticas = () => {
           </Row>
           <Row>
             <Col
-              style={{ minWidth: "300px", backgroundColor: "#F9F9F9" }}
+            xs={24} sm={12} md={12} lg={12}
+              style={{ backgroundColor: "#F9F9F9" }}
               flex="1 1 50%"
             >
               <Divider>Tasa de Rebote</Divider>
               <RenderGraficosCard children={<ProgressRebote />} />
             </Col>
             <Col
-              style={{ minWidth: "300px", backgroundColor: "#F9F9F9" }}
+            xs={24} sm={12} md={12} lg={12}
+              style={{ backgroundColor: "#F9F9F9" }}
               flex="1 1 50%"
             >
               <Divider>Interacciones con Recorridos</Divider>
