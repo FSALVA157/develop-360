@@ -663,14 +663,6 @@ function Player360({ trackPageView }) {
     console.log("ANIMACION HABILITADA?", animateEnabled);
   }, [animateEnabled]);
 
-  const actionEnterVR = () => {
-    const scene = document.querySelector('a-scene');
-    if (scene && scene.enterVR) {
-      scene.enterVR();
-    }
-  };
-  
-
   return (
     <>
       {" "}
@@ -911,7 +903,6 @@ function Player360({ trackPageView }) {
           wrap-count="30"
         ></a-text>
       </a-scene>
-      <button onClick={actionEnterVR} style={{ position: "absolute", top: 100, left: 10 }}>Enter VR</button>
       {showAlertLink && (
         <Alert
           id="alertLink"

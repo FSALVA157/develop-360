@@ -1,21 +1,23 @@
 import ReactDOM from 'react-dom';
 
-import { Button, Modal } from 'antd';
-import { useState } from 'react';
+import {  Modal } from 'antd';
+import { useEffect, useState } from 'react';
 import  FormLogin  from './FormLogin';
 import FormRegister from './FormRegister';
 
 
 export const ModalFormLogin = (
-    // {showModal, setShowModal}
+    
 ) => {
   const [isOpen, setIsOpen] = useState(true)
-  const [isRegister, setIsRegister] = useState(true)
+  const [isRegister, setIsRegister] = useState(false)
 
   const handleCloseModal = (e) => {    
     //e.preventDefault()    
     setIsOpen(false)
   }
+
+  
 
   return ReactDOM.createPortal(    
         

@@ -4,6 +4,7 @@ import "./elementosForm.css";
 import escena from "../assets/escena.png";
 import { GoogleApi } from "./googleApi";
 import LoadingSpin from "./loadingSpin";
+import apiService from "../services/apiService";
 
 export default function ArchivadasForm({
   visible,
@@ -11,6 +12,7 @@ export default function ArchivadasForm({
   alAceptar,
   archivadas,
   eliminarExperiencia,
+  modo
 }) {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
@@ -171,7 +173,12 @@ export default function ArchivadasForm({
     form
       .validateFields()
       .then(async (values) => {
-        let e = await GoogleApi.getFileById(values.experiencia);
+        let e;
+        if(modo){
+          e = await GoogleApi.getFileById(values.experiencia);
+        }else{          
+          e = await apiService.getExperienceById(values.experiencia);          
+        }
         alAceptar(sanitizarProyectoAbierto(e));
         setLoading(false);
         form.resetFields();
