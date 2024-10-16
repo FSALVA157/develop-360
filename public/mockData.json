@@ -1,0 +1,129 @@
+
+[
+{
+    "id": "1A",
+    "escenas": [
+      {
+        "titulo": "iglesia angastaco",
+        "fondo": "https://res.cloudinary.com/xxavierargentino/image/upload/v1724809801/fotos-360/angastaco_v44rja.jpg",
+        "elementos": [
+          {
+            "id": "1720019946945",
+            "nombre": "datos turisticos",
+            "position": {
+              "x": -0.5,
+              "y": -1.46,
+              "z": -22
+            },
+            "rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "tipo": 1,
+            "titulo": "Datos Historicos",
+            "texto": "Iglesia Estilo Colonial"
+          },
+          {
+            "id": "1720440092057",
+            "nombre": "Barcelona",
+            "position": {
+              "x": 8.04,
+              "y": -4.31,
+              "z": -40.5
+            },
+            "rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "tipo": 2,
+            "escena": "Barcelona"
+          },          
+          {
+            "id": "1725543433589",
+            "nombre": "Imagen Asociada a Escena",
+            "position": {
+              "x": 3.31,
+              "y": 2.73,
+              "z": -6.33
+            },
+            "rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "tipo": 3,
+            "imagen": "https://res.cloudinary.com/xxavierargentino/image/upload/v1713835425/journal/nwkpw0lsp8jskxek8qb3.jpg"
+          },
+          {
+            "id": "1725543800270",
+            "nombre": "video de la ciudad",
+            "position": {
+              "x": 6.25,
+              "y": -0.21,
+              "z": -3.39
+            },
+            "rotation": {
+              "x": -3.92,
+              "y": -20.56,
+              "z": 0
+            },
+            "tipo": 0,
+            "video": "https://youtu.be/hk8PsYTO30c"
+          }
+        ],
+        "principal": true,
+        "inicio": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "titulo": "Barcelona",
+        "fondo": "https://res.cloudinary.com/xxavierargentino/image/upload/v1724809412/fotos-360/textures_experience_um4ywy.jpg",
+        "elementos": [
+          {
+            "id": "1720440035157",
+            "nombre": "volver",
+            "position": {
+              "x": 18,
+              "y": -10,
+              "z": -22
+            },
+            "rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "tipo": 2,
+            "escena": "iglesia angastaco"
+          }
+        ],
+        "principal": false,
+        "inicio": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    ],
+    "nombre": "Angastaco",
+    "isAnimated": true,
+    "linkUrl": "https://bodegasetchart.com/bienvenidos/",
+    "titulo360": "Iglesia de Angastaco",
+    "redesSociales": {
+      "facebook": "",
+      "twitter": "",
+      "youtube": "https://youtu.be/xi3QeXFnXDg"
+    },
+    "otras360": [
+      {
+        "icono": "casa",
+        "titulo": "casa de campo",
+        "url": "https://www.airbnb.com.ar/rooms/710111202613439372?adults=1&category_tag=Tag%3A4104&children=0&enable_m3_private_room=true&infants=0&pets=0&photo_id=1485430703&search_mode=flex_destinations_search&check_in=2024-08-18&check_out=2024-08-23&source_impression_id=p3_1723899459_P3MF2s-c-1y0GDI0&previous_page_section_name=1000&federated_search_id=ad93df05-c648-43d1-be2f-b7d401544a8d",
+        "imagen": "https://a0.muscache.com/im/pictures/miso/Hosting-710111202613439372/original/7cd92a49-f994-43e5-b889-46d1da6076c7.jpeg?im_w=1440"
+      }
+    ]
+  }
+  
+]

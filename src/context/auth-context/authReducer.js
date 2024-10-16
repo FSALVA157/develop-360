@@ -10,10 +10,10 @@ import { authTypes as types} from "./types";
 //     refreshToken: null,
 //   }
 
-export const authReducer = (state = [], action) => {
+export const authReducer = (state = {}, action) => {
 
   switch (action.type) {    
-    case types.login:
+    case types.login:      
       return {
         ...state,
         isLogged: true,

@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes as Switch } from 'react-router-dom';
 import LoginForm from "./components/loginForm";
 import BaseDesigner from "./components/basedesigner";
-import Player360 from "./components/player";
+import Player360 from "./components/player-pruebas";
 import { Analiticas } from "./analiticas/componentes/Analiticas";
 
 export default function Routes({ googleAPI, usuarioActivo, setUsuarioActivo }){
