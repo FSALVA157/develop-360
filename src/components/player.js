@@ -667,6 +667,8 @@ function Player360({ trackPageView }) {
     const scene = document.querySelector('a-scene');
     if (scene && scene.enterVR) {
       scene.enterVR();
+      cursor.current.setAttribute("cursor", "rayOrigin: controller; fuse: true; fuseTimeout: 100");
+      cursor.current.setAttribute("visible", true);
     }
   };
   
