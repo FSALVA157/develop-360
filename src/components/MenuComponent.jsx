@@ -103,7 +103,7 @@ const MenuComponent = ({
           } itemMenuFloat`}
         />
       ),
-      label: "fullscreen",
+      label: "vr",
       onClick: () => setVR(),
       style: {
         display: !isMobile ? 'none' : 'block',

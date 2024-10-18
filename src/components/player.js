@@ -663,14 +663,25 @@ function Player360({ trackPageView }) {
     console.log("ANIMACION HABILITADA?", animateEnabled);
   }, [animateEnabled]);
 
+  // const actionEnterVR = () => {
+  //   const scene = document.querySelector('a-scene');
+  //   if (scene && scene.enterVR) {
+  //     scene.enterVR();
+  //     cursor.current.setAttribute("cursor", "rayOrigin: controller; fuse: true; fuseTimeout: 100");
+  //     cursor.current.setAttribute("visible", true);
+  //   }
+  // };
   const actionEnterVR = () => {
     const scene = document.querySelector('a-scene');
     if (scene && scene.enterVR) {
-      scene.enterVR();
-      cursor.current.setAttribute("cursor", "rayOrigin: controller; fuse: true; fuseTimeout: 100");
-      cursor.current.setAttribute("visible", true);
+      scene.enterVR().then(() => {
+        cursor.current.setAttribute("raycaster", "objects: .objeto");
+        cursor.current.setAttribute("cursor", "rayOrigin: controller; fuse: true; fuseTimeout: 1000");
+        cursor.current.setAttribute("visible", true);
+      });
     }
   };
+  
   
 
   return (
@@ -758,6 +769,9 @@ function Player360({ trackPageView }) {
             autoPlay
           />
         </a-assets>
+        <a-entity oculus-touch-controls="hand: left"></a-entity>
+       <a-entity oculus-touch-controls="hand: right"></a-entity>
+
         <a-sky
           ref={cielo}
           id="cielo"
@@ -913,7 +927,7 @@ function Player360({ trackPageView }) {
           wrap-count="30"
         ></a-text>
       </a-scene>
-      <button onClick={actionEnterVR} style={{ position: "absolute", top: 100, left: 10 }}>Enter VR</button>
+      <button onClick={actionEnterVR} style={{ position: "absolute", top: '50%', left: 10, padding: 10, backgroundColor: 'rgba(255, 255, 255, 0.3)', border: '1px solid white' }}>VR</button>
       {showAlertLink && (
         <Alert
           id="alertLink"
