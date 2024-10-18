@@ -797,6 +797,7 @@ function Player360({ trackPageView }) {
             cursor="fuse: true; fuseTimeout: 100"
             raycaster="objects: .objeto"
             material="shader:flat; color:white"
+            rayOrigin="controller"
           />
         </a-camera>
         <a-mixin
