@@ -769,8 +769,8 @@ function Player360({ trackPageView }) {
             autoPlay
           />
         </a-assets>
-        <a-entity oculus-touch-controls="hand: left"></a-entity>
-       <a-entity oculus-touch-controls="hand: right"></a-entity>
+        {/* <a-entity oculus-touch-controls="hand: left"></a-entity>
+<a-entity oculus-touch-controls="hand: right"></a-entity> */}
 
         <a-sky
           ref={cielo}
@@ -797,7 +797,6 @@ function Player360({ trackPageView }) {
             cursor="fuse: true; fuseTimeout: 100"
             raycaster="objects: .objeto"
             material="shader:flat; color:white"
-            rayOrigin="controller"
           />
         </a-camera>
         <a-mixin
