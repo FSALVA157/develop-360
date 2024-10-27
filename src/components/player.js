@@ -61,6 +61,11 @@ function Player360({ trackPageView }) {
   const [desplegarCard, setDesplegarCard] = useState(false);
   const menuEnlacesOtrasRef = useRef(null);
 
+  //state que maneja el src de sky para el caso de events con cursor
+  //https://live.staticflickr.com/65535/49752260808_8338ea3043_b.jpg
+  //const [skySrc, setSkySrc] = useState("https://images.pexels.com/photos/17325269/pexels-photo-17325269/free-photo-of-molinos-de-viento.jpeg?auto=compress&cs=tinysrgb&w=600");
+  const [skySrc, setSkySrc] = useState("https://live.staticflickr.com/65535/49752260808_8338ea3043_b.jpg");
+
   //manejo de Context de Analiticas
   const { analiticasState, addEventHandler, setAnalyticState } =
     useContext(AnaliticasContext);
@@ -111,18 +116,117 @@ function Player360({ trackPageView }) {
     }
   };
 
+  useEffect(() => {
+    //const interval = setInterval(() => {
+        //if (proyecto?.escenas && cielo.current && !AFRAME.components["cursor-listener"]) {
+        if (cielo.current && !AFRAME.components["cursor-listener"]) {
+            console.log("PROYECTO ADENTRO DEL REGISTRO DE EVENTO!!!!", proyecto);
+
+            AFRAME.registerComponent("cursor-listener", {
+                init: function () {
+                    let lastIndex = -1;
+                    const COLORS = ["red", "green", "blue"];
+
+                    this.el.addEventListener("click", function (evt) {
+                        lastIndex = (lastIndex + 1) % COLORS.length;
+                        this.setAttribute("material", "color", COLORS[lastIndex]);
+                        console.log("I was clicked at: ", evt.detail.intersection.point);
+
+                        if (cielo.current) {
+                            cielo.current.setAttribute("material", "color", COLORS[lastIndex]);
+                            // cielo.current.setAttribute("material", "src", "https://images.pexels.com/photos/17325269/pexels-photo-17325269/free-photo-of-molinos-de-viento.jpeg?auto=compress&cs=tinysrgb&w=600");
+                            //cielo.current.setAttribute("material", "src", skySrc); // Usa el valor actual del ref
+                            cielo.current.emit("fadein");
+                            setEscenaOnEventVR();
+                        }
+                        
+                    });
+                },
+            });
+
+            // Limpia el intervalo una vez que el componente ha sido registrado.
+       ////     clearInterval(interval);
+        }
+    // }, 100); // Revisa cada 100 ms hasta que las condiciones se cumplan.
+
+    // // Limpia el intervalo si el componente se desmonta antes de cumplir las condiciones.
+    // return () => clearInterval(interval);
+}, [proyecto]);
+
+
+
   // useEffect(() => {
   //   ReactGA.initialize(ANALYTICS_KEY);
   // }, []);
+  // useEffect(() => {
+  //   console.log("PROYECTO EN EFFECT DE MANEJADORES &&&&&&&&&&&&&&&&&&&&&&&", proyecto);
+  //   if (proyecto && !AFRAME.components["cursor-listener"]) {
+  //     AFRAME.registerComponent("cursor-listener", {
+  //       init: function () {
+  //         var lastIndex = -1;
+  //         var COLORS = ["red", "green", "blue"];
+          
+  //         // Cambia el evento "click" para usar una función de flecha
+  //         // this.el.addEventListener("click", (evt) => {
+  //         //   console.log("I was clicked at: ", evt.detail.intersection.point);
+            
+            
+  //         //   // Aquí se llama a setEscena con el valor actualizado de proyecto
+  //         //   //setEscena("jardin", proyecto);
+  //         // });
+
+  //         this.el.addEventListener("click", function (evt) {
+  //           lastIndex = (lastIndex + 1) % COLORS.length;
+  //           this.setAttribute("material", "color", COLORS[lastIndex]);
+  //           console.log("I was clicked at: ", evt.detail.intersection.point);
+  //           setEscena("jardin", proyecto);
+  //         });
+  //       },
+  //     });
+  //   }
+  // }, [proyecto]);
+
+  const setEscenaOnEventVR = () => {
+    console.log("ADENTRO DE SET ESCENA  PARA VR -----------");
+     let controls = camara.current.components["look-controls"];
+     setEscenaIndex(0);
+
+    // console.log("ESTADO DE PROYECTO ADENTRO DE SETESCENA-----------",proyecto);
+    // cielo.current.emit("fadeout");
+    // let controls = camara.current.components["look-controls"];
+    // setTimeout(() => {
+    //   if (controls) {
+    //     let indice = p.escenas.findIndex((x) => x.titulo === escenaTitulo);
+    //     if (indice < 0) indice = 0;
+    //     console.log("indice-----------", indice);
+    //     setEscenaIndex(indice);
+    //     let valorX =
+    //       ((p.escenas[indice].inicio ? p.escenas[indice].inicio.x : 0) *
+    //         Math.PI) /
+    //       180;
+    //     let valorY =
+    //       (((p.escenas[indice].inicio ? p.escenas[indice].inicio.y : 0) *
+    //         Math.PI) /
+    //         180) *
+    //       -1;
+    //     controls.pitchObject.rotation.x = valorX;
+    //     controls.yawObject.rotation.y = valorY;
+    //   }
+    //   cielo.current.emit("fadein");
+    // }, 500);
+  };
+  
+  
 
   const setEscena = (escenaTitulo, p) => {
-    // console.log(escenaTitulo);
+    
     cielo.current.emit("fadeout");
     let controls = camara.current.components["look-controls"];
     setTimeout(() => {
       if (controls) {
         let indice = p.escenas.findIndex((x) => x.titulo === escenaTitulo);
         if (indice < 0) indice = 0;
+        console.log("indice-----------", indice);
         setEscenaIndex(indice);
         let valorX =
           ((p.escenas[indice].inicio ? p.escenas[indice].inicio.x : 0) *
@@ -177,6 +281,7 @@ function Player360({ trackPageView }) {
   };
 
   const handleClickLinkButton = (e) => {
+    console.log(">>>>>>>>>>><urlLink en handleClickLinkButton", urlLink);
     if (urlLink !== undefined && urlLink !== "") {
       ReactGA.event({
         category: "User",
@@ -671,14 +776,21 @@ function Player360({ trackPageView }) {
   //     cursor.current.setAttribute("visible", true);
   //   }
   // };
+  // const actionEnterVR = () => {
+  //   const scene = document.querySelector('a-scene');
+  //   if (scene && scene.enterVR) {
+  //     scene.enterVR().then(() => {
+  //       cursor.current.setAttribute("raycaster", "objects: .objeto");
+  //       cursor.current.setAttribute("cursor", "rayOrigin: controller; fuse: true; fuseTimeout: 1000");
+  //       cursor.current.setAttribute("visible", true);
+  //     });
+  //   }
+  // };
+
   const actionEnterVR = () => {
     const scene = document.querySelector('a-scene');
     if (scene && scene.enterVR) {
-      scene.enterVR().then(() => {
-        cursor.current.setAttribute("raycaster", "objects: .objeto");
-        cursor.current.setAttribute("cursor", "rayOrigin: controller; fuse: true; fuseTimeout: 1000");
-        cursor.current.setAttribute("visible", true);
-      });
+      scene.enterVR();
     }
   };
   
@@ -798,6 +910,15 @@ function Player360({ trackPageView }) {
             raycaster="objects: .objeto"
             material="shader:flat; color:white"
           />
+            <a-entity
+            cursor="fuse: true; fuseTimeout: 500"
+            rayOrigin="controller"
+            raycaster="objects: .interactable; showLine: true; debug: true"
+            position="0 0 -1"
+            geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+            material="color: black; shader: flat"
+          ></a-entity>
+          
         </a-camera>
         <a-mixin
           id="msg-button"
@@ -902,7 +1023,7 @@ function Player360({ trackPageView }) {
                   />*/}
         {proyecto && proyecto.escenas.length
           ? proyecto.escenas[escenaIndex].elementos.map((e, k) => (
-              <Entity
+              <Entity               
                 key={k}
                 position={`${e.position.x} ${e.position.y} ${e.position.z}`}
                 rotation={`${e.rotation.x} ${e.rotation.y} ${e.rotation.z}`}
@@ -926,6 +1047,13 @@ function Player360({ trackPageView }) {
           rotation="0 0 0"
           wrap-count="30"
         ></a-text>
+        <a-box
+          class="interactable"
+          cursor-listener
+          position="-2 0 -7"
+          geometry="primitive: box"
+          material="color: purple"
+        ></a-box>
       </a-scene>
       <button onClick={actionEnterVR} style={{ position: "absolute", top: '50%', left: 10, padding: 10, backgroundColor: 'rgba(255, 255, 255, 0.3)', border: '1px solid white' }}>VR</button>
       {showAlertLink && (
