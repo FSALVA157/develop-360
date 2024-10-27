@@ -133,7 +133,7 @@ function Player360({ trackPageView }) {
                         console.log("I was clicked at: ", evt.detail.intersection.point);
 
                         if (cielo.current) {
-                            cielo.current.setAttribute("material", "color", COLORS[lastIndex]);
+                            //cielo.current.setAttribute("material", "color", COLORS[lastIndex]);
                             // cielo.current.setAttribute("material", "src", "https://images.pexels.com/photos/17325269/pexels-photo-17325269/free-photo-of-molinos-de-viento.jpeg?auto=compress&cs=tinysrgb&w=600");
                             //cielo.current.setAttribute("material", "src", skySrc); // Usa el valor actual del ref
                             cielo.current.emit("fadein");
@@ -188,6 +188,7 @@ function Player360({ trackPageView }) {
 
   const setEscenaOnEventVR = () => {
     console.log("ADENTRO DE SET ESCENA  PARA VR -----------");
+    
      let controls = camara.current.components["look-controls"];
      setEscenaIndex(0);
 
@@ -1047,13 +1048,13 @@ function Player360({ trackPageView }) {
           rotation="0 0 0"
           wrap-count="30"
         ></a-text>
-        <a-box
+        <a-sphere
           class="interactable"
           cursor-listener
           position="-2 0 -7"
-          geometry="primitive: box"
-          material="color: purple"
-        ></a-box>
+          geometry="primitive: sphere; segmentsWidth: 32; segmentsHeight: 16; radius: 0.5"
+          material="color: yellow"
+        ></a-sphere>
       </a-scene>
       <button onClick={actionEnterVR} style={{ position: "absolute", top: '50%', left: 10, padding: 10, backgroundColor: 'rgba(255, 255, 255, 0.3)', border: '1px solid white' }}>VR</button>
       {showAlertLink && (
