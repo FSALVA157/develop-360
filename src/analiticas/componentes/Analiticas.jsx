@@ -57,25 +57,29 @@ export const Analiticas = () => {
   
 
   return (
-    <div ref={printRef}>
-  return (
+    <div ref={printRef}>  
     <Card     
     >
        <Meta
       avatar={<Avatar size={300} src={membrete} style={{height: 100, fill:"cover"}} />}
       title={<h2>Dashboard de Analíticas de la Empresa: Insights y Tendencias</h2>}
       description={<h1>{experienciasList.filter((exp) => exp.id === idSelectedExp)[0].producto}</h1>}
-    />
-      <Select
-      defaultValue={experienciasList.filter((exp) => exp.id === idSelectedExp)[0].nombre}
-      style={{
-        width: 200,
-      }}
-      onChange={handleChangeExperiencia}
-      options={
-        experienciasList.map((exp) => ({ label: exp.nombre, value: exp.id }))
-      }
-    />
+    />      
+      <Flex gap={"middle"} vertical align="center" >
+          <Select
+          defaultValue={experienciasList.filter((exp) => exp.id === idSelectedExp)[0].nombre}
+          style={{
+            width: 200,
+          }}
+          onChange={handleChangeExperiencia}
+          options={
+            experienciasList.map((exp) => ({ label: exp.nombre, value: exp.id }))
+          }
+                />
+                <Button onClick={handleDownloadPdf} type="primary" shape="round" icon={<CloudDownloadOutlined />} size="middle">
+              Descargar PDF
+            </Button>
+        </Flex>
       <div style={{ margin: "10px 50px " }}>
         <Divider orientation="left">Analiticas</Divider>
         <Row>
