@@ -60,12 +60,43 @@ export const Analiticas = () => {
     <div ref={printRef}>  
     <Card     
     >
-       <Meta
+      <Meta
       avatar={<Avatar size={300} src={membrete} style={{height: 100, fill:"cover"}} />}
       title={<h2>Dashboard de Analíticas: AGN Ford</h2>}
       description={<h1>{experienciasList.filter((exp) => exp.id === idSelectedExp)[0].nombre}</h1>}
-    />      
-      <Flex gap={"middle"} vertical align="center" >
+    /> 
+          
+     <div  style={{
+          display: 'block',
+          justifyContent: 'center',
+          marginTop: '16px',
+          marginLeft: '300px',
+        }}>
+          
+        <Button
+          onClick={handleDownloadPdf}
+          type="primary"
+          shape="round"
+          icon={<CloudDownloadOutlined />}
+          size="middle"          
+        >
+          Descargar PDF
+        </Button>
+      </div>  
+      {/* <Flex gap={"middle"} vertical align="center" justify="center" style={{ width: '100%' }} >      
+                <Button onClick={handleDownloadPdf} type="primary" shape="round" icon={<CloudDownloadOutlined />} size="middle">
+              Descargar PDF
+            </Button>
+        </Flex> */}
+      <div style={{ margin: "10px 50px " }}>
+        <Divider orientation="left">Analiticas</Divider>
+        <Row>
+          <Col
+            style={{ minWidth: "300px", backgroundColor: "#F9F9F9" }}
+            flex="1 1 50%"
+          >            
+            <Divider>Metricas Individuales</Divider>
+            <Flex gap={"middle"} vertical align="center" >
           <Select
           defaultValue={experienciasList.filter((exp) => exp.id === idSelectedExp)[0].nombre}
           style={{
@@ -75,19 +106,8 @@ export const Analiticas = () => {
           options={
             experienciasList.map((exp) => ({ label: exp.nombre, value: exp.id }))
           }
-                />
-                <Button onClick={handleDownloadPdf} type="primary" shape="round" icon={<CloudDownloadOutlined />} size="middle">
-              Descargar PDF
-            </Button>
+                />                
         </Flex>
-      <div style={{ margin: "10px 50px " }}>
-        <Divider orientation="left">Analiticas</Divider>
-        <Row>
-          <Col
-            style={{ minWidth: "300px", backgroundColor: "#F9F9F9" }}
-            flex="1 1 50%"
-          >
-            <Divider>Metricas Individuales</Divider>
             <RenderGraficosCard children={<MetricasIndividuales metricasGenerales={metricasGenerales} />}/>
             
           </Col>
