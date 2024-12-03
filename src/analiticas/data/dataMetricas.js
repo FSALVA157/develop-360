@@ -121,7 +121,7 @@ export const tabla_experiencias = [
   {
     id: '1',
     nombre: 'Salón de ventas AGN Ford',
-    categoria: "Categoría 1",
+    categoria: "ventas",
     fecha_publicacion: '12/01/2024',    
     link: 'https://metaverso.griftin.com.ar/player/0249548e-22ea-455e-b6c7-b8a86d4bbb5e',
     status: "ALTO"
@@ -129,7 +129,7 @@ export const tabla_experiencias = [
   {
     id: '2',
     nombre: 'Ford Ranger',
-    categoria: "Categoría 2",
+    categoria: "camioneta",
     fecha_publicacion: '02/02/2024',    
     link: 'https://metaverso.griftin.com.ar/player/11P_dUpEr9XVEu2UwRl4wurQ6lsqgbUOJ',
     status: "MEDIO"
@@ -137,7 +137,7 @@ export const tabla_experiencias = [
   {
     id: '3',
     nombre: 'Ford Maverick',
-    categoria: "Categoría 3",
+    categoria: "camioneta",
     fecha_publicacion: '20/04/2024',    
     link: 'https://metaverso.griftin.com.ar/player/15qK4Anlqr5jXn26UTD9gc_lEs6YQnLOK',
     status: "BAJO"
@@ -145,7 +145,7 @@ export const tabla_experiencias = [
   {
     id: '4',
     nombre: 'Ford Nueva Bronco',
-    categoria: "Categoría 1",
+    categoria: "camioneta",
     fecha_publicacion: '14/06/2024',    
     link: 'https://metaverso.griftin.com.ar/player/15TnBLFWPPKW5tYGempLKMlUfH5bMQAKv',
     status: "ALTO"
@@ -153,7 +153,7 @@ export const tabla_experiencias = [
   {
     id: '5',
     nombre: 'Ford Kuga',
-    categoria: "Categoría 2",
+    categoria: "camioneta",
     fecha_publicacion: '17/07/2024',    
     link: 'https://metaverso.griftin.com.ar/player/1f75lU0RU36LjdFKSO4vx1NHlbdYPEVF_',
     status: "MEDIO"
