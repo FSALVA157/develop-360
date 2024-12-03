@@ -34,7 +34,7 @@ export const TablaExperiencias = () => {
             title: 'Link',
             dataIndex: 'link',            
             key: 'link',
-            render: (text) => <a href={text} target="_blank">{text}</a>
+            render: (text, record) => <a href={text} target="_blank">{record.nombre}</a>
           },
           {
             title: 'Status',
