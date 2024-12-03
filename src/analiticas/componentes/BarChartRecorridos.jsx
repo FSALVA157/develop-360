@@ -26,7 +26,7 @@ export const BarChartRecorridos = () => {
           <Bar dataKey="visitas" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue"/>} 
            barSize={30}
           >
-            <LabelList style={{ fill: 'white' }} dataKey="experiencia" position="center" />
+            <LabelList style={{ fill: 'black' }} dataKey="experiencia" position="center" />
           </Bar>          
         </BarChart>
       </ResponsiveContainer>
