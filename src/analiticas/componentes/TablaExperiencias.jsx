@@ -25,14 +25,14 @@ export const TablaExperiencias = () => {
             dataIndex: 'fecha_publicacion',
             key: 'fecha_publicacion',
           },
-          {
-            title: 'Producto',
-            dataIndex: 'producto',
-            key: 'producto',
-          },
+          // {
+          //   title: 'Producto',
+          //   dataIndex: 'producto',
+          //   key: 'producto',
+          // },
           {
             title: 'Link',
-            dataIndex: 'link',
+            dataIndex: 'link',            
             key: 'link',
             render: (text) => <a href={text} target="_blank">{text}</a>
           },

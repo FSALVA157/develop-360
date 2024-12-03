@@ -34,6 +34,7 @@ export const Analiticas = () => {
     setMetricasGenerales(metrica_generales.filter((exp) => exp.id_experiencia === value)[0])
   }
 
+
   const handleDownloadPdf = async () => {
     const element = printRef.current;
     const canvas = await html2canvas(element);
@@ -44,6 +45,7 @@ export const Analiticas = () => {
       unit: 'pt',
       format: 'a4',
     });
+
 
     const imgProperties = pdf.getImageProperties(data);
     const pdfWidth = pdf.internal.pageSize.getWidth();
@@ -56,47 +58,40 @@ export const Analiticas = () => {
 
   return (
     <div ref={printRef}>
-      <Card
-      >        
-         <Meta
-        avatar={<Avatar size={160} src={membrete} />}
-        title={<h2>Dashboard de Analíticas de la Empresa: Insights y Tendencias</h2>}
-        description={<h1>{experienciasList.filter((exp) => exp.id === idSelectedExp)[0].producto}</h1>}
-      />
-       
-        <Flex gap={"middle"} vertical align="center" >
-          <Select
-          defaultValue={experienciasList.filter((exp) => exp.id === idSelectedExp)[0].nombre}
-          style={{
-            width: 200,
-          }}
-          onChange={handleChangeExperiencia}
-          options={
-            experienciasList.map((exp) => ({ label: exp.nombre, value: exp.id }))
-          }
-                />
-                <Button onClick={handleDownloadPdf} type="primary" shape="round" icon={<CloudDownloadOutlined />} size="middle">
-              Descargar PDF
-            </Button>
-        </Flex>
-        <div style={{ margin: "10px 50px " }}>
-          <Divider orientation="left">Analiticas</Divider>
-          <Row>
-            <Col
-               xs={24} sm={12} md={12} lg={12}
-              style={{  backgroundColor: "#F9F9F9" }}
-              flex="1 1 20%"
-            >
-              <Divider>Metricas Individuales</Divider>
-              <RenderGraficosCard children={<MetricasIndividuales metricasGenerales={metricasGenerales} />}/>
-      
-            </Col>
-            <Col 
-               xs={24} sm={12} md={12} lg={12} style={{ backgroundColor: "#F9F9F9" }} flex="1 1 80%">
-              <Divider>Ranking de Mas Visitadas</Divider>
-              <RenderGraficosCard children={<BarChartRecorridos />} />
-            </Col>
-          </Row>
+  return (
+    <Card     
+    >
+       <Meta
+      avatar={<Avatar size={300} src={membrete} style={{height: 100, fill:"cover"}} />}
+      title={<h2>Dashboard de Analíticas de la Empresa: Insights y Tendencias</h2>}
+      description={<h1>{experienciasList.filter((exp) => exp.id === idSelectedExp)[0].producto}</h1>}
+    />
+      <Select
+      defaultValue={experienciasList.filter((exp) => exp.id === idSelectedExp)[0].nombre}
+      style={{
+        width: 200,
+      }}
+      onChange={handleChangeExperiencia}
+      options={
+        experienciasList.map((exp) => ({ label: exp.nombre, value: exp.id }))
+      }
+    />
+      <div style={{ margin: "10px 50px " }}>
+        <Divider orientation="left">Analiticas</Divider>
+        <Row>
+          <Col
+            style={{ minWidth: "300px", backgroundColor: "#F9F9F9" }}
+            flex="1 1 50%"
+          >
+            <Divider>Metricas Individuales</Divider>
+            <RenderGraficosCard children={<MetricasIndividuales metricasGenerales={metricasGenerales} />}/>
+            
+          </Col>
+          <Col style={{ minWidth: "300px" }} flex="1 1 50%">
+            <Divider>Ranking de Mas Visitadas</Divider>
+            <RenderGraficosCard children={<BarChartRecorridos />} />
+          </Col>
+        </Row>
           <Row>
             <Col
              xs={24} sm={12} md={12} lg={12}
