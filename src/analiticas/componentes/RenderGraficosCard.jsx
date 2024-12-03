@@ -5,7 +5,7 @@ import React from 'react'
 
 export const RenderGraficosCard = ({children}) => {
   return (
-    <Card
+    <Card    
        style={{
          margin: '10px',
          maxWidth: '100%',   

@@ -17,7 +17,8 @@ import {
   PlusSquareOutlined,
   SaveOutlined,
   ShareAltOutlined,
-  PieChartOutlined
+  PieChartOutlined,
+  ExperimentOutlined
 } from "@ant-design/icons";
 import {
   Layout,
@@ -32,6 +33,7 @@ import {
   Flex,
   Input,
   Collapse,
+  Space,
 } from "antd";
 import ElementInspector from "./elementInspector";
 import EmptyPage from "./emptyPage";
@@ -42,6 +44,11 @@ import Publicar from "./publicar";
 import SceneInspector from "./sceneInspector";
 import GuardandoQueue from "./guardandoQueue";
 import { FormEnlances } from "../FormEnlances";
+import { ModalFormLogin } from "./auth-components/ModalFormLogin";
+import apiService from "../services/apiService";
+import { AuthContext } from "../context/auth-context/AuthContext";
+import { useAddMockRegister } from "../conversor/useAddMockRegister";
+import { useCloudinaryUpload } from "../hooks/useCloudinaryUpload";
 const { Header, Content, Footer, Sider } = Layout;
 
 const BaseDesigner = ({ usuarioActivo, setUsuarioActivo, googleAPI }) => {
@@ -53,6 +60,16 @@ const BaseDesigner = ({ usuarioActivo, setUsuarioActivo, googleAPI }) => {
   const [elemento, setElemento] = useState(null);
   const [camaraPos, setCamaraPos] = useState({ x: 0, y: 0 });
   const [mostrarExperienciaForm, setMostrarExperienciaForm] = useState(false);
+  //hook que maneja agregar mock
+  const { addNewRegister, dataMock } = useAddMockRegister();
+
+//tomemos el authState desde el context 
+  const {authState, logout, login } = React.useContext(AuthContext);
+
+  //state que maneja la creacion de experiencias a una API o a Drive
+  //true: drive, false: API
+  const [modo, setModo] = useState(true);
+
   const [proyecto, setProyecto] = useState({
     id: null,
     nombre: "",
@@ -101,8 +118,27 @@ const BaseDesigner = ({ usuarioActivo, setUsuarioActivo, googleAPI }) => {
   // const inputTwitterRef = useRef(null);
   // const inputYoutubeRef = useRef(null);
   // const inputFacebookRef = useRef(null);
-  
 
+  const {uploadImageCl, urlImageCl} = useCloudinaryUpload();
+  
+  const manageConversorClick = () => {
+    addNewRegister(proyecto);
+    
+  };
+
+  useEffect(() => {
+    if(dataMock){
+      console.log("****VEAMOS EL ESTADO DE LA DATA MOCKEADA************");
+      console.log(dataMock);
+
+      if (dataMock.length > 1) {
+        const image = dataMock[1]?.escenas[0]?.fondo;
+        console.log("image", image);
+        uploadImageCl(image);
+      }
+    }
+  }, [dataMock])
+  
 
   const agregarElemento = () => {
     console.log("elementos: ", proyecto.escenas.length);
@@ -202,7 +238,12 @@ const BaseDesigner = ({ usuarioActivo, setUsuarioActivo, googleAPI }) => {
     //setCambiosGuardando(cambiosGuardando+1);
     setLoading(true);
     console.log("antes de guardar: ", p);
-    let response = await googleAPI.saveFile(p, proyecto.id);
+    let response;
+    if(modo){
+      response = await googleAPI.saveFile(p, proyecto.id);
+    }else{
+      response = await googleAPI.saveFile(p, p.id);
+    }
     console.log("al guardar: ", response);
     setCambiosGuardando(0);
     setLoading(false);
@@ -256,11 +297,24 @@ const BaseDesigner = ({ usuarioActivo, setUsuarioActivo, googleAPI }) => {
         {
           label: "Archivadas",
           icon: React.createElement(FolderOpenOutlined),
-          onClick: async () => {
+          onClick: async () => {            
             setLoading(true);
-            console.log(drive);
-            let e = await googleAPI.getExperiencias(drive);
-            console.log(e);
+            let e;
+            if(modo){
+              console.log(drive);
+              e = await googleAPI.getExperiencias(drive);
+              console.log("forma de e al traer de drive", e)
+              console.log(e);
+            }else{
+              e = await apiService.getData("experiencias");              
+              e = e.map(item => {
+                return {
+                  id: item.id,
+                  name: item.nombre,
+                }
+              });
+              console.log(e[0]);
+            }
             if (e.length) {
               setUsuarioActivo({ ...usuarioActivo, experiencias: e });
               setMostrarArchivadasForm(true);
@@ -269,6 +323,23 @@ const BaseDesigner = ({ usuarioActivo, setUsuarioActivo, googleAPI }) => {
             } else alert("No hay experiencias archivadas.");
             setLoading(false);
           },
+        },
+      ],
+    },
+    
+    {
+      label: authState.username,
+      icon: UserOutlined,
+      hijos: [
+        {
+          label: "Opciones",
+          icon: React.createElement(MenuOutlined),
+          onClick: () => googleAPI.listFiles().then((x) => console.log(x)),
+        },
+        {
+          label: "Cerrar Sesion",
+          icon: React.createElement(LogoutOutlined),
+          onClick: () => logout(),
         },
       ],
     },
@@ -326,7 +397,8 @@ const BaseDesigner = ({ usuarioActivo, setUsuarioActivo, googleAPI }) => {
           funcion: () => setMostrarPublicar(true),
         },
       ],
-    },
+    }  
+
   ]);
 
   const getMenuLateral = () => {
@@ -518,6 +590,8 @@ const BaseDesigner = ({ usuarioActivo, setUsuarioActivo, googleAPI }) => {
   // };
 
   const addElemento = (values) => {
+    console.log("VALUES QUE ENTRAN A ADD ELEMENTO: ", values);
+    console.log(values);
     //  const tmpEscena = escena;
     const newElemento = {
       id: "" + Date.now(),
@@ -556,6 +630,9 @@ const BaseDesigner = ({ usuarioActivo, setUsuarioActivo, googleAPI }) => {
           />
 
           {/* <Divider orientation="left">Animation</Divider> */}
+           <Divider style={{ fontSize:'.8rem' }}>conversor</Divider>
+            <Button disabled={!modo}  danger onClick={manageConversorClick} >Convertir Experiencia</Button>
+            <Divider></Divider>
           <Collapse
             items={[
               {
@@ -746,13 +823,18 @@ const BaseDesigner = ({ usuarioActivo, setUsuarioActivo, googleAPI }) => {
           <Menu
             theme="dark"
             mode="horizontal"
-            defaultSelectedKeys={["2"]}
+            defaultSelectedKeys={["1"]}
             items={items1}
             style={{
               flex: 1,
               minWidth: 0,
             }}
           />
+          <Space direction="horizontal">
+            <span style={{color: 'white', marginRight: 10 }}>Desea Trabajar con Backend o Drive?</span>
+            <Switch defaultChecked checkedChildren="drive" unCheckedChildren="api" onChange={() => {setModo(prev=>!prev)}} />
+
+        </Space>
         </Header>
         {/* <Content
           style={{
@@ -798,8 +880,12 @@ const BaseDesigner = ({ usuarioActivo, setUsuarioActivo, googleAPI }) => {
           }}
         >
           Griftin 360 Designer ©{new Date().getFullYear()}
+          
         </Footer>
+        {
+            !authState.isLogged && !modo && <ModalFormLogin />
 
+        }
         <LoadingSpin visible={loading} />
         <ArchivadasForm
           visible={mostrarArchivadasForm}
@@ -810,6 +896,7 @@ const BaseDesigner = ({ usuarioActivo, setUsuarioActivo, googleAPI }) => {
             setProyecto(p);
             setMostrarArchivadasForm(false);
           }}
+          modo={modo}
         />
         <ExperienciasForm
           visible={mostrarExperienciaForm}
@@ -820,6 +907,7 @@ const BaseDesigner = ({ usuarioActivo, setUsuarioActivo, googleAPI }) => {
           visible={mostrarEscenaForm}
           alCerrar={() => setMostrarEscenaForm(false)}
           alAceptar={addEscena}
+          modo={modo}
         />
         <ElementosForm
           visible={mostrarElementosForm}
@@ -832,6 +920,7 @@ const BaseDesigner = ({ usuarioActivo, setUsuarioActivo, googleAPI }) => {
           alCerrar={() => setMostrarPublicar(false)}
         />
       </Layout>
+      
     </Layout>
   );
 };

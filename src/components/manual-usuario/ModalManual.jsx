@@ -8,8 +8,7 @@ export const ModalManual = ({showModal, setShowModal, handleCancel}) => {
   const [isClosed, setIsClosed] = useState(false)
 
   const handleCloseModal = (e) => {    
-    e.preventDefault()
-    console.log("acabo de hacer click en el ok del modal", isClosed)
+    e.preventDefault()    
     setIsClosed(true)
   }
 

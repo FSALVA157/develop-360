@@ -28,11 +28,13 @@ import PropTypes from "prop-types";
 import {
   onPageView,
   onViewScene,
-  onCalculateSpent,
+  onCalculateSpent
 } from "../tracking/listeners/experienceEventsListeners";
 import { AnaliticasContext } from "../context/analiticas-context/AnaliticasContext";
 import apiService from "../services/apiService";
 require("aframe-look-at-component");
+
+
 
 function Player360({ trackPageView }) {
   const [open, setOpen] = useState(false);
@@ -58,14 +60,6 @@ function Player360({ trackPageView }) {
   //state que maneja el ocultamiento de la card de menu de otras segun click en pantalla
   const [desplegarCard, setDesplegarCard] = useState(false);
   const menuEnlacesOtrasRef = useRef(null);
-
-  //state que maneja el src de sky para el caso de events con cursor
-  //https://live.staticflickr.com/65535/49752260808_8338ea3043_b.jpg
-  //const [skySrc, setSkySrc] = useState("https://images.pexels.com/photos/17325269/pexels-photo-17325269/free-photo-of-molinos-de-viento.jpeg?auto=compress&cs=tinysrgb&w=600");
-  const [skySrc, setSkySrc] = useState(
-    "https://live.staticflickr.com/65535/49752260808_8338ea3043_b.jpg"
-  );
-  const [indiceEscena, setIndiceEscena] = useState(0);
 
   //manejo de Context de Analiticas
   const { analiticasState, addEventHandler, setAnalyticState } =
@@ -117,240 +111,18 @@ function Player360({ trackPageView }) {
     }
   };
 
-  useEffect(() => {
-    //const interval = setInterval(() => {
-    //if (proyecto?.escenas && cielo.current && !AFRAME.components["cursor-listener"]) {
-    if (cielo.current && !AFRAME.components["to-scene-1"]) {
-      console.log("PROYECTO ADENTRO DEL REGISTRO DE EVENTO!!!!", proyecto);
-
-      AFRAME.registerComponent("to-scene-1", {
-        init: function () {
-          let lastIndex = -1;
-          const COLORS = ["red", "green", "blue"];
-
-          this.el.addEventListener("click", function (evt) {
-            lastIndex = (lastIndex + 1) % COLORS.length;
-            this.setAttribute("material", "color", COLORS[lastIndex]);
-            console.log("I was clicked at: ", evt.detail.intersection.point);
-
-            if (cielo.current) {
-              //cielo.current.setAttribute("material", "color", COLORS[lastIndex]);
-              // cielo.current.setAttribute("material", "src", "https://images.pexels.com/photos/17325269/pexels-photo-17325269/free-photo-of-molinos-de-viento.jpeg?auto=compress&cs=tinysrgb&w=600");
-              //cielo.current.setAttribute("material", "src", skySrc); // Usa el valor actual del ref
-              cielo.current.emit("fadein");
-              //setEscenaOnEventVR(indiceEscena);
-              setEscenaOnEventVR(0);
-            }
-          });
-        },
-      });
-    }
-    if (cielo.current && !AFRAME.components["to-scene-2"]) {
-      console.log("PROYECTO ADENTRO DEL REGISTRO DE EVENTO 2!!!!", proyecto);
-
-      AFRAME.registerComponent("to-scene-2", {
-        init: function () {
-          let lastIndex = -1;
-          const COLORS = ["red", "green", "blue"];
-
-          this.el.addEventListener("click", function (evt) {
-            lastIndex = (lastIndex + 1) % COLORS.length;
-            this.setAttribute("material", "color", COLORS[lastIndex]);
-            console.log("I was clicked at 2: ", evt.detail.intersection.point);
-
-            if (cielo.current) {
-              //cielo.current.setAttribute("material", "color", COLORS[lastIndex]);
-              // cielo.current.setAttribute("material", "src", "https://images.pexels.com/photos/17325269/pexels-photo-17325269/free-photo-of-molinos-de-viento.jpeg?auto=compress&cs=tinysrgb&w=600");
-              //cielo.current.setAttribute("material", "src", skySrc); // Usa el valor actual del ref
-              cielo.current.emit("fadein");
-              //setEscenaOnEventVR(indiceEscena);
-              setEscenaOnEventVR(1);
-            }
-          });
-        },
-      });
-    }
-
-    if (cielo.current && !AFRAME.components["to-scene-3"]) {
-      console.log("PROYECTO ADENTRO DEL REGISTRO DE EVENTO 2!!!!", proyecto);
-
-      AFRAME.registerComponent("to-scene-3", {
-        init: function () {
-          let lastIndex = -1;
-          const COLORS = ["red", "green", "blue"];
-
-          this.el.addEventListener("click", function (evt) {
-            lastIndex = (lastIndex + 1) % COLORS.length;
-            this.setAttribute("material", "color", COLORS[lastIndex]);
-            console.log("I was clicked at 3: ", evt.detail.intersection.point);
-
-            if (cielo.current) {
-              //cielo.current.setAttribute("material", "color", COLORS[lastIndex]);
-              // cielo.current.setAttribute("material", "src", "https://images.pexels.com/photos/17325269/pexels-photo-17325269/free-photo-of-molinos-de-viento.jpeg?auto=compress&cs=tinysrgb&w=600");
-              //cielo.current.setAttribute("material", "src", skySrc); // Usa el valor actual del ref
-              cielo.current.emit("fadein");
-              //setEscenaOnEventVR(indiceEscena);
-              setEscenaOnEventVR(2);
-            }
-          });
-        },
-      });
-    }
-
-    if (cielo.current && !AFRAME.components["to-scene-4"]) {
-      console.log("PROYECTO ADENTRO DEL REGISTRO DE EVENTO 4!!!!", proyecto);
-
-      AFRAME.registerComponent("to-scene-4", {
-        init: function () {
-          let lastIndex = -1;
-          const COLORS = ["red", "green", "blue"];
-
-          this.el.addEventListener("click", function (evt) {
-            lastIndex = (lastIndex + 1) % COLORS.length;
-            this.setAttribute("material", "color", COLORS[lastIndex]);
-            console.log("I was clicked at 4: ", evt.detail.intersection.point);
-
-            if (cielo.current) {
-              //cielo.current.setAttribute("material", "color", COLORS[lastIndex]);
-              // cielo.current.setAttribute("material", "src", "https://images.pexels.com/photos/17325269/pexels-photo-17325269/free-photo-of-molinos-de-viento.jpeg?auto=compress&cs=tinysrgb&w=600");
-              //cielo.current.setAttribute("material", "src", skySrc); // Usa el valor actual del ref
-              cielo.current.emit("fadein");
-              //setEscenaOnEventVR(indiceEscena);
-              setEscenaOnEventVR(3);
-            }
-          });
-        },
-      });
-    }
-
-    if (cielo.current && !AFRAME.components["to-scene-5"]) {
-      console.log("PROYECTO ADENTRO DEL REGISTRO DE EVENTO 5!!!!", proyecto);
-
-      AFRAME.registerComponent("to-scene-5", {
-        init: function () {
-          let lastIndex = -1;
-          const COLORS = ["red", "green", "blue"];
-
-          this.el.addEventListener("click", function (evt) {
-            lastIndex = (lastIndex + 1) % COLORS.length;
-            this.setAttribute("material", "color", COLORS[lastIndex]);
-            console.log("I was clicked at 5: ", evt.detail.intersection.point);
-
-            if (cielo.current) {
-              //cielo.current.setAttribute("material", "color", COLORS[lastIndex]);
-              // cielo.current.setAttribute("material", "src", "https://images.pexels.com/photos/17325269/pexels-photo-17325269/free-photo-of-molinos-de-viento.jpeg?auto=compress&cs=tinysrgb&w=600");
-              //cielo.current.setAttribute("material", "src", skySrc); // Usa el valor actual del ref
-              cielo.current.emit("fadein");
-              //setEscenaOnEventVR(indiceEscena);
-              setEscenaOnEventVR(4);
-            }
-          });
-        },
-      });
-    }
-    //}, 100); // Revisa cada 100 ms hasta que las condiciones se cumplan.
-
-    // Limpia el intervalo si el componente se desmonta antes de cumplir las condiciones.
-    //  return () => clearInterval(interval);
-  }, [indiceEscena]);
-
-  useEffect(() => {
-
-    if (proyecto) {
-
-      for (let i = 0; i < proyecto.escenas.length; i++) {
-        const element = document.getElementById(`link${i + 1}`);
-        if (element) {
-          element.setAttribute("visible", "true"); // Cambia el atributo "visible" a true en A-Frame
-          const label = document.getElementById(`label${i + 1}`);
-          if (label) {
-            label.setAttribute("value", proyecto.escenas[i].titulo); // Cambia el atributo "visible" a true en A-Frame
-          }
-        } else {
-          console.warn(`Elemento con ID link${i + 1} no encontrado.`);
-        }
-      }
-    }
-  }, [proyecto]);
-
-  // const setEventoParaEsfera = () => {
-  //   if (cielo.current && !AFRAME.components["cursor-listener"]) {
-  //     console.log("PROYECTO ADENTRO DEL REGISTRO DE EVENTO!!!!", proyecto);
-
-  //     AFRAME.registerComponent("cursor-listener", {
-  //       init: function () {
-  //         let lastIndex = -1;
-  //         const COLORS = ["red", "green", "blue"];
-
-  //         this.el.addEventListener("click", function (evt) {
-  //           lastIndex = (lastIndex + 1) % COLORS.length;
-  //           this.setAttribute("material", "color", COLORS[lastIndex]);
-  //           console.log("I was clicked at: ", evt.detail.intersection.point);
-
-  //           if (cielo.current) {
-  //             //cielo.current.setAttribute("material", "color", COLORS[lastIndex]);
-  //             // cielo.current.setAttribute("material", "src", "https://images.pexels.com/photos/17325269/pexels-photo-17325269/free-photo-of-molinos-de-viento.jpeg?auto=compress&cs=tinysrgb&w=600");
-  //             //cielo.current.setAttribute("material", "src", skySrc); // Usa el valor actual del ref
-  //             cielo.current.emit("fadein");
-  //             setEscenaOnEventVR(indiceEscena);
-  //           }
-  //         });
-  //       },
-  //     });
-  //   }
-  // };
-
   // useEffect(() => {
   //   ReactGA.initialize(ANALYTICS_KEY);
   // }, []);
 
-  // useEffect(() => {
-  //   console.log("PROYECTO EN EFFECT DE MANEJADORES &&&&&&&&&&&&&&&&&&&&&&&", proyecto);
-  //   if (proyecto && !AFRAME.components["cursor-listener"]) {
-  //     AFRAME.registerComponent("cursor-listener", {
-  //       init: function () {
-  //         var lastIndex = -1;
-  //         var COLORS = ["red", "green", "blue"];
-
-  //         // Cambia el evento "click" para usar una función de flecha
-  //         // this.el.addEventListener("click", (evt) => {
-  //         //   console.log("I was clicked at: ", evt.detail.intersection.point);
-
-  //         //   // Aquí se llama a setEscena con el valor actualizado de proyecto
-  //         //   //setEscena("jardin", proyecto);
-  //         // });
-
-  //         this.el.addEventListener("click", function (evt) {
-  //           lastIndex = (lastIndex + 1) % COLORS.length;
-  //           this.setAttribute("material", "color", COLORS[lastIndex]);
-  //           console.log("I was clicked at: ", evt.detail.intersection.point);
-  //           setEscena("jardin", proyecto);
-  //         });
-  //       },
-  //     });
-  //   }
-  // }, [proyecto]);
-
-  const setEscenaOnEventVR = (indice) => {
-    console.log("ADENTRO DE SET ESCENA  PARA VR -----------");
-
-    let controls = camara.current.components["look-controls"];
-    setEscenaIndex(indice);
-    // if(indiceEscena === 0){
-    //   setIndiceEscena(1);
-    // }else{
-    //   setIndiceEscena(0);
-    // }
-  };
-
   const setEscena = (escenaTitulo, p) => {
+    // console.log(escenaTitulo);
     cielo.current.emit("fadeout");
     let controls = camara.current.components["look-controls"];
     setTimeout(() => {
       if (controls) {
         let indice = p.escenas.findIndex((x) => x.titulo === escenaTitulo);
         if (indice < 0) indice = 0;
-        console.log("indice-----------", indice);
         setEscenaIndex(indice);
         let valorX =
           ((p.escenas[indice].inicio ? p.escenas[indice].inicio.x : 0) *
@@ -365,7 +137,6 @@ function Player360({ trackPageView }) {
         controls.yawObject.rotation.y = valorY;
       }
       cielo.current.emit("fadein");
-      //setEventoParaEsfera();
     }, 500);
   };
 
@@ -406,7 +177,6 @@ function Player360({ trackPageView }) {
   };
 
   const handleClickLinkButton = (e) => {
-    console.log(">>>>>>>>>>><urlLink en handleClickLinkButton", urlLink);
     if (urlLink !== undefined && urlLink !== "") {
       ReactGA.event({
         category: "User",
@@ -635,9 +405,9 @@ function Player360({ trackPageView }) {
     setCargando(true);
 
     //nuevo codigo para llamar desde la api
-    if (location.proyectId == "1A") {
+    if(location.proyectId == "1A"){
       getDataApi();
-      return;
+      return;       
     }
     var a = await fetch(
       "https://codegstudio.com/apps/360/convertir.php?id=" + location.proyectId
@@ -831,9 +601,9 @@ function Player360({ trackPageView }) {
   };
 
   const getDataApi = async () => {
-    const resData = await apiService.getData("proyectos");
-    console.log("DATA DESDE API DE FER>>>", resData);
-    const data = resData[0];
+    const resData =  await apiService.getData("proyectos");    
+    console.log("DATA DESDE API DE FER>>>", resData)
+    const data = resData[0]
     onPageView(addEventHandler, {
       id_experience: data.id,
       name_experience: data.nombre,
@@ -847,23 +617,26 @@ function Player360({ trackPageView }) {
     setLinksData(data.otras360);
   };
 
+  
+
   useEffect(() => {
     //inicio contador de tiempo de permanencia
-    startTime = Date.now();
-
+    startTime = Date.now();    
+    
     const handleBeforeUnload = () => {
       const endTime = Date.now();
       const duration = (endTime - startTime) / 1000;
       setSpentTime(duration);
-      sessionStorage.setItem("tiempoPermanencia", duration);
+      sessionStorage.setItem('tiempoPermanencia', duration);
       onCalculateSpent({
         idExperience: proyecto.id,
         nameExperience: proyecto.nombre,
-        timeSeconds: duration,
-      });
-    };
+        timeSeconds: duration
+      })      
+    }
+    
 
-    console.log("[PLAYER-VIEW]:::EFFECT", !location.proyectId);
+    console.log("[PLAYER-VIEW]:::EFFECT", !location.proyectId);    
     setMouseEvents();
     getProject();
     isMobile();
@@ -881,38 +654,14 @@ function Player360({ trackPageView }) {
 
     window.addEventListener("beforeunload", handleBeforeUnload);
 
-    return () => {};
+    return () => {
+      
+    }
   }, []);
 
   useEffect(() => {
     console.log("ANIMACION HABILITADA?", animateEnabled);
   }, [animateEnabled]);
-
-  // const actionEnterVR = () => {
-  //   const scene = document.querySelector('a-scene');
-  //   if (scene && scene.enterVR) {
-  //     scene.enterVR();
-  //     cursor.current.setAttribute("cursor", "rayOrigin: controller; fuse: true; fuseTimeout: 100");
-  //     cursor.current.setAttribute("visible", true);
-  //   }
-  // };
-  // const actionEnterVR = () => {
-  //   const scene = document.querySelector('a-scene');
-  //   if (scene && scene.enterVR) {
-  //     scene.enterVR().then(() => {
-  //       cursor.current.setAttribute("raycaster", "objects: .objeto");
-  //       cursor.current.setAttribute("cursor", "rayOrigin: controller; fuse: true; fuseTimeout: 1000");
-  //       cursor.current.setAttribute("visible", true);
-  //     });
-  //   }
-  // };
-
-  const actionEnterVR = () => {
-    const scene = document.querySelector("a-scene");
-    if (scene && scene.enterVR) {
-      scene.enterVR();
-    }
-  };
 
   return (
     <>
@@ -999,9 +748,6 @@ function Player360({ trackPageView }) {
             autoPlay
           />
         </a-assets>
-        {/* <a-entity oculus-touch-controls="hand: left"></a-entity>
-<a-entity oculus-touch-controls="hand: right"></a-entity> */}
-
         <a-sky
           ref={cielo}
           id="cielo"
@@ -1028,14 +774,6 @@ function Player360({ trackPageView }) {
             raycaster="objects: .objeto"
             material="shader:flat; color:white"
           />
-          <a-entity
-            cursor="fuse: true; fuseTimeout: 500"
-            rayOrigin="controller"
-            raycaster="objects: .interactable; showLine: true; debug: true"
-            position="0 0 -1"
-            geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-            material="color: black; shader: flat"
-          ></a-entity>
         </a-camera>
         <a-mixin
           id="msg-button"
@@ -1046,7 +784,7 @@ function Player360({ trackPageView }) {
           clickeable
         ></a-mixin>
         <a-mixin
-          id="view-button"          
+          id="view-button"
           geometry="primitive: circle; radius:5;"
           material="opacity: 1; transparent:true; shader: flat; src: #gafas; side: double"
           animation__scale="property: scale; to: 2.2 2.2 2.2; dur: 200; startEvents: mouseenter"
@@ -1139,24 +877,14 @@ function Player360({ trackPageView }) {
               text="shader: msdf; anchor: left; width: 40; font: https://cdn.aframe.io/examples/ui/Viga-Regular.json; color: white; value: ok"
                   />*/}
         {proyecto && proyecto.escenas.length
-          ? proyecto.escenas[escenaIndex].elementos.map((e, k) => 
-            {             
-              
-              const position = proyecto.escenas.findIndex((es) => es.titulo === e.escena);
-
-              console.log("<<<<<POSITION", position)
-              console.log("<<<<<ELEMENTO>>>>>", e)
-
-            return (
+          ? proyecto.escenas[escenaIndex].elementos.map((e, k) => (
               <Entity
                 key={k}
                 position={`${e.position.x} ${e.position.y} ${e.position.z}`}
                 rotation={`${e.rotation.x} ${e.rotation.y} ${e.rotation.z}`}
                 mixin={getTipo(e)}
-               // class="interactable"
-               {...(e.tipo === 2 ? { [`to-scene-${position}`]: true } : {})}
                 id={e.id}
-                className="objeto interactable"
+                className="objeto"
                 visible={!playing}
                 events={{
                   click: getFunction(e),
@@ -1164,9 +892,7 @@ function Player360({ trackPageView }) {
                   mouseleave: () => hideTooltip(e),
                 }}
               />
-            )
-          }
-          )
+            ))
           : ""}
         <a-text
           font="kelsonsans"
@@ -1176,150 +902,7 @@ function Player360({ trackPageView }) {
           rotation="0 0 0"
           wrap-count="30"
         ></a-text>
-{/* 
-        <a-entity
-          id="link1"
-          visible={false}
-        >
-          <a-text
-          id="label1"
-          value="Este es un tooltip"
-          font="kelsonsans"
-          width="4"
-          rotation="0 0 0"
-          position="-2 -0 -9"
-          visible="true"
-          color="#FFFFFF"
-          align="center"
-        ></a-text>
-        <a-sphere          
-          class="interactable"
-          
-          //cursor-listener
-          to-scene-1
-          position="-2 0 -10"
-          geometry="primitive: sphere; segmentsWidth: 32; segmentsHeight: 16; radius: 0.5"
-          material="color: #B0B0B0; metalness: 0.8; roughness: 0.2"
-        ></a-sphere>
-        </a-entity>
-
-        <a-entity
-          id="link2"
-          visible={false}
-        >
-          <a-text
-          id="label2"
-          value="Este es un tooltip"
-          font="kelsonsans"
-          width="4"
-          rotation="0 0 0"
-          position="0 0 -9"
-          visible="true"
-          color="#FFFFFF"
-          align="center"
-        ></a-text>
-        <a-sphere          
-          class="interactable"
-          
-          //cursor-listener
-          to-scene-2
-          position="0 0 -10"
-          geometry="primitive: sphere; segmentsWidth: 32; segmentsHeight: 16; radius: 0.5"
-          material="color: #B0B0B0; metalness: 0.8; roughness: 0.2"
-        ></a-sphere>
-        </a-entity>
-
-        <a-entity
-          id="link3"
-          visible={false}
-        >
-          <a-text
-          id="label3"
-          value="escena"
-          font="kelsonsans"
-          width="4"
-          rotation="0 0 0"
-          position="2 0 -9"
-          visible="true"
-          color="#FFFFFF"
-          align="center"
-        ></a-text>
-        <a-sphere          
-          class="interactable"
-          
-          //cursor-listener
-          to-scene-3
-          position="2 0 -10"
-          geometry="primitive: sphere; segmentsWidth: 32; segmentsHeight: 16; radius: 0.5"
-          material="color: #B0B0B0; metalness: 0.8; roughness: 0.2"
-        ></a-sphere>
-        </a-entity>
-
-        <a-entity
-          id="link4"
-          visible={false}
-        >
-          <a-text
-          id="label4"
-          value="escena"
-          font="kelsonsans"
-          width="4"
-          rotation="0 0 0"
-          position="4 0 -9"
-          visible="true"
-          color="#FFFFFF"
-          align="center"
-        ></a-text>
-        <a-sphere          
-          class="interactable"
-          
-          //cursor-listener
-          to-scene-4
-          position="4 0 -10"
-          geometry="primitive: sphere; segmentsWidth: 32; segmentsHeight: 16; radius: 0.5"
-          material="color: #B0B0B0; metalness: 0.8; roughness: 0.2"
-        ></a-sphere>
-        </a-entity>
-
-        <a-entity
-          id="link5"
-          visible={false}
-        >
-          <a-text
-          id="label5"
-          value="escena"
-          font="kelsonsans"
-          width="4"
-          rotation="0 0 0"
-          position="6 -0 -9"
-          visible="true"
-          color="#FFFFFF"
-          align="center"
-        ></a-text>
-        <a-sphere          
-          class="interactable"          
-          //cursor-listener
-          to-scene-5
-          position="6 0 -10"
-          geometry="primitive: sphere; segmentsWidth: 32; segmentsHeight: 16; radius: 0.5"
-          material="color: #B0B0B0; metalness: 0.8; roughness: 0.2"
-        ></a-sphere>
-        </a-entity>
- */}
       </a-scene>
-      <button
-        onClick={actionEnterVR}
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: 10,
-          padding: 10,
-          backgroundColor: "rgba(255, 255, 255, 0.3)",
-          border: "1px solid white",
-        }}
-      >
-        VR
-      </button>
       {showAlertLink && (
         <Alert
           id="alertLink"

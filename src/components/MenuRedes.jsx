@@ -1,37 +1,35 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   AppstoreOutlined,
   MailOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import { Collapse, Menu, Popover } from "antd";
-import carritoSvg from "../assets/carrito.svg";
+import { Menu, Popover } from "antd";
 import shareSvg from "../assets/share.svg";
 import { useCopyLink } from "../hooks/useCopyLink";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { onShareExperience } from "../tracking/listeners/experienceEventsListeners";
+import { shareExperienceEvent } from "../tracking/events/experienceEvents";
+import PropTypes from 'prop-types';
+import { withTracking } from 'react-tracker';
+import { AnaliticasContext } from "../context/analiticas-context/AnaliticasContext";
 
-const MenuRedes = ({ handleLinkButton }) => {
-  const { copied, handleCopy } = useCopyLink;
+const MenuRedes = ({ data, trackPageShared }) => {
+  const { copied, handleCopy } = useCopyLink();
   const [showMenu, setShowMenu] = useState(true);
   const currentUrl = window.location.href;
+  const {addEventHandler} = useContext(AnaliticasContext)
+
+  const handleOnCopy = () => {
+    handleCopy();
+    onShareExperience(addEventHandler,{
+      idExperienceShared: data.id,
+      nameExperienceShared: data.nombre      
+    });
+  };
 
   const items = [
-    // {
-    //   key: "carrito_key",
-    //   icon: (
-    //     <div className="icon-rel-360">
-    //     <img
-    //       src={carritoSvg}
-    //       alt="carrito svg"
-    //       style={{ width: 40, height: 40 }}
-    //       className="animate__animated animate__fadeIn otra_360"
-    //     />
-    //     </div>
-    //   ),
-    //   // label: "Enlace",
-    //   onClick: () => handleLinkButton(),
-      
-    // },
+    
     {
       key: "enlace_key",
       // label: "Copiar enlace",     
@@ -39,7 +37,7 @@ const MenuRedes = ({ handleLinkButton }) => {
         padding: "0px",
       } ,
       icon: (
-        <CopyToClipboard text={currentUrl} onCopy={handleCopy}>
+        <CopyToClipboard text={currentUrl} onCopy={handleOnCopy}>
           <Popover            
             title="Enlace copiado!"
             trigger="click"
@@ -92,4 +90,18 @@ const MenuRedes = ({ handleLinkButton }) => {
     </div>
   );
 };
-export default MenuRedes;
+
+MenuRedes.propTypes = {  
+  trackPageShared: PropTypes.func
+}
+
+const mapTrackingToProps = trackEvent => {    
+  return {
+    trackPageShared: (data) =>{      
+       trackEvent(shareExperienceEvent(data))
+      }
+  };
+};
+
+const menuRedesWithTrackingShare = withTracking(mapTrackingToProps)(MenuRedes)
+export default menuRedesWithTrackingShare
