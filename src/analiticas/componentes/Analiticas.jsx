@@ -57,8 +57,7 @@ export const Analiticas = () => {
   
 
   return (
-    <div ref={printRef}>
-  return (
+    <div ref={printRef}>  
     <Card     
     >
        <Meta
