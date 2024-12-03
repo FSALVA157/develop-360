@@ -1,35 +1,35 @@
 export const lista_experiencias = [{
   "id": 1,
-  "nombre": "Experiencia 1",
-  "producto": "Camioneta Modelo RX1532",
+  "nombre": "Salón de ventas AGN Ford",
+  "producto": "Salón de Ventas",
   "fecha_creacion": "2022-01-01",
   "fecha_actualizacion": "2022-01-01"
 },
 {
   "id": 2,
-  "nombre": "Experiencia 2",
-  "producto": "Automóvil Deportivo modelos RX1532",
+  "nombre": "Ford Ranger",
+  "producto": "camioneta",
   "fecha_creacion": "2022-01-01",
   "fecha_actualizacion": "2022-01-01"
 },
 {
   "id": 3,
-  "nombre": "Experiencia 3",
-  "producto": "Departamento en Puerto Madero",
+  "nombre": "Ford Maverick",
+  "producto": "camioneta",
   "fecha_creacion": "2022-01-01",
   "fecha_actualizacion": "2022-01-01"
 },
 {
   "id": 4,
-  "nombre": "Experiencia 4",
-  "producto": "Casa en la Playa",
+  "nombre": "Ford Nueva Bronco",
+  "producto": "camioneta",
   "fecha_creacion": "2022-01-01",
   "fecha_actualizacion": "2022-01-01"
 },
 {
   "id": 5,
-  "nombre": "Experiencia 5",
-  "producto": "Moto Deportiva RX1532",
+  "nombre": "Ford Kuga",
+  "producto": "camioneta",
   "fecha_creacion": "2022-01-01",
   "fecha_actualizacion": "2022-01-01"
 }
@@ -84,31 +84,31 @@ export const metrica_generales = [
 ];
 
 export const metrica_visitas = [
-  { "recorrido": "Recorrido 1", "visitas": 1500 },
-  { "recorrido": "Recorrido 2", "visitas": 1200 },
-  { "recorrido": "Recorrido 3", "visitas": 1000 },
-  { "recorrido": "Recorrido 4", "visitas": 800 },
-  { "recorrido": "Recorrido 5", "visitas": 600 }
+  { "recorrido": "Salón de ventas AGN Ford", "visitas": 1500 },
+  { "recorrido": "Ford Ranger", "visitas": 1200 },
+  { "recorrido": "Ford Maverick", "visitas": 1000 },
+  { "recorrido": "Ford Nueva Bronco", "visitas": 800 },
+  { "recorrido": "Ford Kuga", "visitas": 600 }
 ];
 
 export const metrica_carrito = [
-  { "recorrido": "Recorrido 1", "value": 500 },
-  { "recorrido": "Recorrido 2", "value": 400 },
-  { "recorrido": "Recorrido 3", "value": 300 },
-  { "recorrido": "Recorrido 4", "value": 200 },
-  { "recorrido": "Recorrido 5", "value": 100 }
+  { "recorrido": "Salón de ventas AGN Ford", "value": 500 },
+  { "recorrido": "Ford Ranger", "value": 400 },
+  { "recorrido": "Ford Maverick", "value": 300 },
+  { "recorrido": "Ford Nueva Bronco", "value": 200 },
+  { "recorrido": "Ford Kuga", "value": 100 }
 ];
 
 export const metrica_mensuales = [
-  { "mes": "Enero", "visitas": 1500, "experiencia": "Exp 1" },
-  { "mes": "Febrero", "visitas": 1800, "experiencia": "Exp 2" },
-  { "mes": "Marzo", "visitas": 2000, "experiencia": "Exp 3" },
-  { "mes": "Abril", "visitas": 2200, "experiencia": "Exp 1" },
-  { "mes": "Mayo", "visitas": 2400, "experiencia": "Exp 2" },
-  { "mes": "Junio", "visitas": 3000, "experiencia": "Exp 1" },
-  { "mes": "Julio", "visitas": 3500, "experiencia": "Exp 3" },
-  { "mes": "Agosto", "visitas": 3800, "experiencia": "Exp 1" },
-  { "mes": "Septiembre", "visitas": 4000, "experiencia": "Exp 1" }
+  { "mes": "Enero", "visitas": 1500, "experiencia": "Salón" },
+  { "mes": "Febrero", "visitas": 1800, "experiencia": "Ranger" },
+  { "mes": "Marzo", "visitas": 2000, "experiencia": "Maverick" },
+  { "mes": "Abril", "visitas": 2200, "experiencia": "Salón" },
+  { "mes": "Mayo", "visitas": 2400, "experiencia": "Ranger" },
+  { "mes": "Junio", "visitas": 3000, "experiencia": "Salón" },
+  { "mes": "Julio", "visitas": 3500, "experiencia": "Maverick" },
+  { "mes": "Agosto", "visitas": 3800, "experiencia": "Salón" },
+  { "mes": "Septiembre", "visitas": 4000, "experiencia": "Salón" }
 ];
 
 export const metrica_dispositivos = [
@@ -120,88 +120,74 @@ export const metrica_dispositivos = [
 export const tabla_experiencias = [
   {
     id: '1',
-    nombre: 'Recorrido 1',
+    nombre: 'Salón de ventas AGN Ford',
     categoria: "Categoría 1",
-    fecha_publicacion: '01/01/2020',
-    producto: 'producto 1',
-    link: 'https://www.google.com',
+    fecha_publicacion: '12/01/2024',    
+    link: 'https://metaverso.griftin.com.ar/player/0249548e-22ea-455e-b6c7-b8a86d4bbb5e',
     status: "ALTO"
   },
   {
     id: '2',
-    nombre: 'Recorrido 2',
+    nombre: 'Ford Ranger',
     categoria: "Categoría 2",
-    fecha_publicacion: '02/01/2020',
-    producto: 'producto 2',
-    link: 'https://www.apple.com',
+    fecha_publicacion: '02/02/2024',    
+    link: 'https://metaverso.griftin.com.ar/player/11P_dUpEr9XVEu2UwRl4wurQ6lsqgbUOJ',
     status: "MEDIO"
   },
   {
     id: '3',
-    nombre: 'Recorrido 3',
+    nombre: 'Ford Maverick',
     categoria: "Categoría 3",
-    fecha_publicacion: '03/01/2020',
-    producto: 'producto 3',
-    link: 'https://www.microsoft.com',
+    fecha_publicacion: '20/04/2024',    
+    link: 'https://metaverso.griftin.com.ar/player/15qK4Anlqr5jXn26UTD9gc_lEs6YQnLOK',
     status: "BAJO"
   },
   {
     id: '4',
-    nombre: 'Recorrido 4',
+    nombre: 'Ford Nueva Bronco',
     categoria: "Categoría 1",
-    fecha_publicacion: '04/01/2020',
-    producto: 'producto 4',
-    link: 'https://www.amazon.com',
+    fecha_publicacion: '14/06/2024',    
+    link: 'https://metaverso.griftin.com.ar/player/15TnBLFWPPKW5tYGempLKMlUfH5bMQAKv',
     status: "ALTO"
   },
   {
     id: '5',
-    nombre: 'Recorrido 5',
+    nombre: 'Ford Kuga',
     categoria: "Categoría 2",
-    fecha_publicacion: '05/01/2020',
-    producto: 'producto 5',
-    link: 'https://www.google.com',
+    fecha_publicacion: '17/07/2024',    
+    link: 'https://metaverso.griftin.com.ar/player/1f75lU0RU36LjdFKSO4vx1NHlbdYPEVF_',
     status: "MEDIO"
-  },
-  {
-    id: '6',
-    nombre: 'Recorrido 6',
-    categoria: "Categoría 3",
-    fecha_publicacion: '06/01/2020',
-    producto: 'producto 6',
-    link: 'https://www.yahoo.com',
-    status: "BAJO"
   }
 ];
 
 export const metrica_mas_visitadas = [
-  { "recorrido": "Recorrido 1", "interacciones": 2000, "porcentaje": 74 },
-  { "recorrido": "Recorrido 2", "interacciones": 1500, "porcentaje": 52 },
-  { "recorrido": "Recorrido 3", "interacciones": 1000, "porcentaje": 36 },
-  { "recorrido": "Recorrido 4", "interacciones": 800, "porcentaje": 28 },
-  { "recorrido": "Recorrido 5", "interacciones": 600, "porcentaje": 22 }
+  { "recorrido": "Salón de ventas AGN Ford", "interacciones": 2000, "porcentaje": 74 },
+  { "recorrido": "Ford Ranger", "interacciones": 1500, "porcentaje": 52 },
+  { "recorrido": "Ford Maverick", "interacciones": 1000, "porcentaje": 36 },
+  { "recorrido": "Ford Nueva Bronco", "interacciones": 800, "porcentaje": 28 },
+  { "recorrido": "Ford Kuga", "interacciones": 600, "porcentaje": 22 }
 ];
 
 export const metrica_interacciones = [
-  { "recorrido": "Recorrido 1", "interacciones": 2000, "porcentaje": 74 },
-  { "recorrido": "Recorrido 2", "interacciones": 1500, "porcentaje": 52 },
-  { "recorrido": "Recorrido 3", "interacciones": 1000, "porcentaje": 36 },
-  { "recorrido": "Recorrido 4", "interacciones": 800, "porcentaje": 28 },
-  { "recorrido": "Recorrido 5", "interacciones": 600, "porcentaje": 22 }
+  { "recorrido": "Salón de ventas AGN Ford", "interacciones": 2000, "porcentaje": 74 },
+  { "recorrido": "Ford Ranger", "interacciones": 1500, "porcentaje": 52 },
+  { "recorrido": "Ford Maverick", "interacciones": 1000, "porcentaje": 36 },
+  { "recorrido": "Ford Nueva Bronco", "interacciones": 800, "porcentaje": 28 },
+  { "recorrido": "Ford Kuga", "interacciones": 600, "porcentaje": 22 }
 ];
 
 export const metrica_permanencia = [
-  { "recorrido": "Recorrido 1", "tiempo_permanencia": "3m", "porcentaje": 96 },
-  { "recorrido": "Recorrido 2", "tiempo_permanencia": "2m 30s", "porcentaje": 85 },
-  { "recorrido": "Recorrido 3", "tiempo_permanencia": "2m", "porcentaje": 75 },
-  { "recorrido": "Recorrido 4", "tiempo_permanencia": "1m 45s", "porcentaje": 65 },
-  { "recorrido": "Recorrido 5", "tiempo_permanencia": "1m 30s", "porcentaje": 55 }
+  { "recorrido": "Salón de ventas AGN Ford", "tiempo_permanencia": "3m", "porcentaje": 96 },
+  { "recorrido": "Ford Ranger", "tiempo_permanencia": "2m 30s", "porcentaje": 85 },
+  { "recorrido": "Ford Maverick", "tiempo_permanencia": "2m", "porcentaje": 75 },
+  { "recorrido": "Ford Nueva Bronco", "tiempo_permanencia": "1m 45s", "porcentaje": 65 },
+  { "recorrido": "Ford Kuga", "tiempo_permanencia": "1m 30s", "porcentaje": 55 }
 ];
 
 export const metrica_rebote = [
-  { "recorrido": "Recorrido 1", "rebote": "4%", "porcentaje": 96 },
-  { "recorrido": "Recorrido 2", "rebote": "5%", "porcentaje": 85 },
-  { "recorrido": "Recorrido 3", "rebote": "6%", "porcentaje": 75 },
-  { "recorrido": "Recorrido 4", "rebote": "7%", "porcentaje": 65 },
-  { "recorrido": "Recorrido 5", "rebote": "8%", "porcentaje": 55 }
+  { "recorrido": "Salón de ventas AGN Ford", "rebote": "4%", "porcentaje": 96 },
+  { "recorrido": "Ford Ranger", "rebote": "5%", "porcentaje": 85 },
+  { "recorrido": "Ford Maverick", "rebote": "6%", "porcentaje": 75 },
+  { "recorrido": "Ford Nueva Bronco", "rebote": "7%", "porcentaje": 65 },
+  { "recorrido": "Ford Kuga", "rebote": "8%", "porcentaje": 55 }
 ];

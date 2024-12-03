@@ -8,7 +8,11 @@ export const RenderGraficosCard = ({children}) => {
     <Card
        style={{
          margin: '10px',
+         maxWidth: '100%',   
+         width: '100%',
        }}
+       
+            
     >
       
         {children}
