@@ -62,8 +62,8 @@ export const Analiticas = () => {
     >
        <Meta
       avatar={<Avatar size={300} src={membrete} style={{height: 100, fill:"cover"}} />}
-      title={<h2>Dashboard de Analíticas de la Empresa: Insights y Tendencias</h2>}
-      description={<h1>{experienciasList.filter((exp) => exp.id === idSelectedExp)[0].producto}</h1>}
+      title={<h2>Dashboard de Analíticas: AGN Ford</h2>}
+      description={<h1>{experienciasList.filter((exp) => exp.id === idSelectedExp)[0].nombre}</h1>}
     />      
       <Flex gap={"middle"} vertical align="center" >
           <Select
