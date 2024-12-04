@@ -118,6 +118,16 @@ export const Analiticas = () => {
             <RenderGraficosCard children={<MetricasIndividuales metricasGenerales={metricasGenerales} />}/>
             
           </Col>
+          <Col
+             xs={24} sm={12} md={12} lg={12}
+              style={{ backgroundColor: "#F9F9F9",marginTop: "40px 0px" }}
+              flex="1 1 50%"
+            >
+              <Divider>Agregados al Carrito</Divider>
+              <div style={{marginTop:"60px"}}>
+              <RenderGraficosCard children={<PaddingChartPaddingCarrito />} />
+              </div>
+            </Col>
           {/* <Col style={{ minWidth: "300px" }} flex="1 1 50%">
             <Divider>Ranking de Mas Visitadas</Divider>
             <RenderGraficosCard children={<BarChartRecorridos />} />
@@ -165,9 +175,19 @@ export const Analiticas = () => {
               style={{  backgroundColor: "#F9F9F9" }}
               flex="1 1 50%"
             >
+              <Divider>Tiempo de Permanencia Recorridos</Divider>
+              <RenderGraficosCard children={<ProgressPermanencia />} />
+              {/* <Divider>Agregados al Carrito</Divider>
+              <RenderGraficosCard children={<PaddingChartPaddingCarrito />} /> */}
+            </Col>
+            {/* <Col
+             xs={24} sm={12} md={12} lg={12}
+              style={{  backgroundColor: "#F9F9F9" }}
+              flex="1 1 50%"
+            >
               <Divider>Agregados al Carrito</Divider>
               <RenderGraficosCard children={<PaddingChartPaddingCarrito />} />
-            </Col>
+            </Col> */}
           </Row>
           <Row>
             <Col
@@ -185,8 +205,8 @@ export const Analiticas = () => {
             >
               <Divider>Recorridos Mas Visitadas</Divider>
               <RenderGraficosCard children={<ProgressMasVisitados />} />
-              <Divider>Tiempo de Permanencia Recorridos</Divider>
-              <RenderGraficosCard children={<ProgressPermanencia />} />
+              {/* <Divider>Tiempo de Permanencia Recorridos</Divider>
+              <RenderGraficosCard children={<ProgressPermanencia />} /> */}
             </Col>
           </Row>
           <Row>
