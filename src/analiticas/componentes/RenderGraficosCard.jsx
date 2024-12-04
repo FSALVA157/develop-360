@@ -10,6 +10,7 @@ export const RenderGraficosCard = ({children}) => {
          margin: '10px',
          maxWidth: '100%',   
          width: '100%',
+          height: '100%',
        }}
        
             

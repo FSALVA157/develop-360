@@ -114,22 +114,22 @@ export const Analiticas = () => {
             experienciasList.map((exp) => ({ label: exp.nombre, value: exp.id }))
           }
                 />                
-        </Flex>
+        </Flex >
             <RenderGraficosCard children={<MetricasIndividuales metricasGenerales={metricasGenerales} />}/>
             
           </Col>
           <Col
              xs={24} sm={12} md={12} lg={12}
-              style={{ backgroundColor: "#F9F9F9",marginTop: "40px 0px" }}
-              flex="1 1 50%"
+              style={{ backgroundColor: "#F9F9F9",marginTop: "0px 0px", height: "100%" }}
+              flex="1 1 50%"              
             >
               <Divider>Agregados al Carrito</Divider>
-              <div style={{marginTop:"60px"}}>
+              <Flex style={{paddingTop:"30px", height:'100%'}}>
               <RenderGraficosCard children={<PaddingChartPaddingCarrito />} />
-              </div>
+              </Flex>
             </Col>
           {/* <Col style={{ minWidth: "300px" }} flex="1 1 50%">
-            <Divider>Ranking de Mas Visitadas</Divider>
+            <Divider></Flex>Ranking de Mas Visitadas</Divider>
             <RenderGraficosCard children={<BarChartRecorridos />} />
           </Col> */}
         </Row>
