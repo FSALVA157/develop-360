@@ -118,11 +118,39 @@ export const Analiticas = () => {
             <RenderGraficosCard children={<MetricasIndividuales metricasGenerales={metricasGenerales} />}/>
             
           </Col>
-          <Col style={{ minWidth: "300px" }} flex="1 1 50%">
+          {/* <Col style={{ minWidth: "300px" }} flex="1 1 50%">
+            <Divider>Ranking de Mas Visitadas</Divider>
+            <RenderGraficosCard children={<BarChartRecorridos />} />
+          </Col> */}
+        </Row>
+
+        <Row>
+          {/* <Col
+            style={{ minWidth: "300px", backgroundColor: "#F9F9F9" }}
+            flex="1 1 50%"
+          >            
+            <Divider>Metricas Individuales</Divider>
+            <Flex gap={"middle"} vertical align="center" >
+          <Select
+          defaultValue={experienciasList.filter((exp) => exp.id === idSelectedExp)[0].nombre}
+          style={{
+            width: 200,
+          }}
+          onChange={handleChangeExperiencia}
+          options={
+            experienciasList.map((exp) => ({ label: exp.nombre, value: exp.id }))
+          }
+                />                
+        </Flex>
+            <RenderGraficosCard children={<MetricasIndividuales metricasGenerales={metricasGenerales} />}/>
+            
+          </Col> */}
+          <Col style={{ minWidth: "300px" }} flex="1 1 100%">
             <Divider>Ranking de Mas Visitadas</Divider>
             <RenderGraficosCard children={<BarChartRecorridos />} />
           </Col>
         </Row>
+
           <Row>
             <Col
              xs={24} sm={12} md={12} lg={12}
