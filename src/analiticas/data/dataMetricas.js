@@ -1,6 +1,6 @@
 export const lista_experiencias = [{
   "id": 1,
-  "nombre": "Salón de ventas AGN Ford",
+  "nombre": "Salón AGN Ford",
   "producto": "Salón de Ventas",
   "fecha_creacion": "2022-01-01",
   "fecha_actualizacion": "2022-01-01"
@@ -84,7 +84,7 @@ export const metrica_generales = [
 ];
 
 export const metrica_visitas = [
-  { "recorrido": "Salón de ventas AGN Ford", "visitas": 1500 },
+  { "recorrido": "Salón AGN Ford", "visitas": 1500 },
   { "recorrido": "Ford Ranger", "visitas": 1200 },
   { "recorrido": "Ford Maverick", "visitas": 1000 },
   { "recorrido": "Ford Nueva Bronco", "visitas": 800 },
@@ -92,7 +92,7 @@ export const metrica_visitas = [
 ];
 
 export const metrica_carrito = [
-  { "recorrido": "Salón de ventas AGN Ford", "value": 500 },
+  { "recorrido": "Salón AGN Ford", "value": 500 },
   { "recorrido": "Ford Ranger", "value": 400 },
   { "recorrido": "Ford Maverick", "value": 300 },
   { "recorrido": "Ford Nueva Bronco", "value": 200 },
@@ -120,7 +120,7 @@ export const metrica_dispositivos = [
 export const tabla_experiencias = [
   {
     id: '1',
-    nombre: 'Salón de ventas AGN Ford',
+    nombre: 'Salón AGN Ford',
     categoria: "ventas",
     fecha_publicacion: '12/01/2024',    
     link: 'https://metaverso.griftin.com.ar/player/0249548e-22ea-455e-b6c7-b8a86d4bbb5e',
@@ -161,7 +161,7 @@ export const tabla_experiencias = [
 ];
 
 export const metrica_mas_visitadas = [
-  { "recorrido": "Salón de ventas AGN Ford", "interacciones": 2000, "porcentaje": 74 },
+  { "recorrido": "Salón AGN Ford", "interacciones": 2000, "porcentaje": 74 },
   { "recorrido": "Ford Ranger", "interacciones": 1500, "porcentaje": 52 },
   { "recorrido": "Ford Maverick", "interacciones": 1000, "porcentaje": 36 },
   { "recorrido": "Ford Nueva Bronco", "interacciones": 800, "porcentaje": 28 },
@@ -169,7 +169,7 @@ export const metrica_mas_visitadas = [
 ];
 
 export const metrica_interacciones = [
-  { "recorrido": "Salón de ventas AGN Ford", "interacciones": 2000, "porcentaje": 74 },
+  { "recorrido": "Salón AGN Ford", "interacciones": 2000, "porcentaje": 74 },
   { "recorrido": "Ford Ranger", "interacciones": 1500, "porcentaje": 52 },
   { "recorrido": "Ford Maverick", "interacciones": 1000, "porcentaje": 36 },
   { "recorrido": "Ford Nueva Bronco", "interacciones": 800, "porcentaje": 28 },
@@ -177,7 +177,7 @@ export const metrica_interacciones = [
 ];
 
 export const metrica_permanencia = [
-  { "recorrido": "Salón de ventas AGN Ford", "tiempo_permanencia": "3m", "porcentaje": 96 },
+  { "recorrido": "Salón AGN Ford", "tiempo_permanencia": "3m", "porcentaje": 96 },
   { "recorrido": "Ford Ranger", "tiempo_permanencia": "2m 30s", "porcentaje": 85 },
   { "recorrido": "Ford Maverick", "tiempo_permanencia": "2m", "porcentaje": 75 },
   { "recorrido": "Ford Nueva Bronco", "tiempo_permanencia": "1m 45s", "porcentaje": 65 },
@@ -185,7 +185,7 @@ export const metrica_permanencia = [
 ];
 
 export const metrica_rebote = [
-  { "recorrido": "Salón de ventas AGN Ford", "rebote": "4%", "porcentaje": 96 },
+  { "recorrido": "Salón AGN Ford", "rebote": "4%", "porcentaje": 96 },
   { "recorrido": "Ford Ranger", "rebote": "5%", "porcentaje": 85 },
   { "recorrido": "Ford Maverick", "rebote": "6%", "porcentaje": 75 },
   { "recorrido": "Ford Nueva Bronco", "rebote": "7%", "porcentaje": 65 },

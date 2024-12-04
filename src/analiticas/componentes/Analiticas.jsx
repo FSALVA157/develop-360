@@ -61,9 +61,15 @@ export const Analiticas = () => {
     <Card     
     >
       <Meta
+      style={{
+        textAlign: 'center',
+        marginRight: '300px', // Compensate for avatar width
+        fontFamily: 'Spartan'
+      }}
       avatar={<Avatar size={300} src={membrete} style={{height: 100, fill:"cover"}} />}
-      title={<h2>Dashboard de Analíticas: AGN Ford</h2>}
-      description={<h1>{experienciasList.filter((exp) => exp.id === idSelectedExp)[0].nombre}</h1>}
+      title={<h1 style={{fontFamily: 'Spartan'}}>Dashboard de Analíticas: AGN Ford</h1>}
+      description={<h2 style={{fontFamily: 'Spartan'}}>{experienciasList.filter((exp) => exp.id === idSelectedExp)[0].nombre}</h2>}
+      
     /> 
           
      <div  style={{
@@ -71,6 +77,7 @@ export const Analiticas = () => {
           justifyContent: 'center',
           marginTop: '16px',
           marginLeft: '300px',
+          marginRight: '300px',
         }}>
           
         <Button
@@ -111,11 +118,39 @@ export const Analiticas = () => {
             <RenderGraficosCard children={<MetricasIndividuales metricasGenerales={metricasGenerales} />}/>
             
           </Col>
-          <Col style={{ minWidth: "300px" }} flex="1 1 50%">
+          {/* <Col style={{ minWidth: "300px" }} flex="1 1 50%">
+            <Divider>Ranking de Mas Visitadas</Divider>
+            <RenderGraficosCard children={<BarChartRecorridos />} />
+          </Col> */}
+        </Row>
+
+        <Row>
+          {/* <Col
+            style={{ minWidth: "300px", backgroundColor: "#F9F9F9" }}
+            flex="1 1 50%"
+          >            
+            <Divider>Metricas Individuales</Divider>
+            <Flex gap={"middle"} vertical align="center" >
+          <Select
+          defaultValue={experienciasList.filter((exp) => exp.id === idSelectedExp)[0].nombre}
+          style={{
+            width: 200,
+          }}
+          onChange={handleChangeExperiencia}
+          options={
+            experienciasList.map((exp) => ({ label: exp.nombre, value: exp.id }))
+          }
+                />                
+        </Flex>
+            <RenderGraficosCard children={<MetricasIndividuales metricasGenerales={metricasGenerales} />}/>
+            
+          </Col> */}
+          <Col style={{ minWidth: "300px" }} flex="1 1 100%">
             <Divider>Ranking de Mas Visitadas</Divider>
             <RenderGraficosCard children={<BarChartRecorridos />} />
           </Col>
         </Row>
+
           <Row>
             <Col
              xs={24} sm={12} md={12} lg={12}
