@@ -61,9 +61,15 @@ export const Analiticas = () => {
     <Card     
     >
       <Meta
+      style={{
+        textAlign: 'center',
+        marginRight: '300px', // Compensate for avatar width
+        fontFamily: 'Spartan'
+      }}
       avatar={<Avatar size={300} src={membrete} style={{height: 100, fill:"cover"}} />}
-      title={<h2>Dashboard de Analíticas: AGN Ford</h2>}
-      description={<h1>{experienciasList.filter((exp) => exp.id === idSelectedExp)[0].nombre}</h1>}
+      title={<h1 style={{fontFamily: 'Spartan'}}>Dashboard de Analíticas: AGN Ford</h1>}
+      description={<h2 style={{fontFamily: 'Spartan'}}>{experienciasList.filter((exp) => exp.id === idSelectedExp)[0].nombre}</h2>}
+      
     /> 
           
      <div  style={{
@@ -71,6 +77,7 @@ export const Analiticas = () => {
           justifyContent: 'center',
           marginTop: '16px',
           marginLeft: '300px',
+          marginRight: '300px',
         }}>
           
         <Button
